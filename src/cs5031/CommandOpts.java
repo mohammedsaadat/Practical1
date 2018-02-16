@@ -3,12 +3,15 @@ package cs5031;
 public class CommandOpts {
 	private int maxguesses;
 	private int maxhints;
-	
+
 	private String wordsource;
-	
+
+	private static final int MAX_GUESSES = 10;
+	private static final int MAX_HINTS = 2;
+
 	CommandOpts(String[] args) {
-		maxguesses = 10;
-		maxhints = 2;
+		maxguesses = MAX_GUESSES;
+		maxhints = MAX_HINTS;
 		
 		wordsource = "";
 		
