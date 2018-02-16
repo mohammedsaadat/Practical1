@@ -1,7 +1,6 @@
 package cs5031;
 
 public class CommandOpts {
-
 	public int maxguesses;
 	public int maxhints;
 	
