@@ -6,21 +6,21 @@ public class Hangman {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-GameState game; CommandOpts opts;
+        GameState game; CommandOpts opts;
 		boolean correct;
 		
 		opts = new CommandOpts(args);
 		
 		if (opts.getWordsource() == "") {
-		
-		System.out.println("  1. Counties");
-		System.out.println("  2. Countries");
-		System.out.println("  3. Cities");
 
-		System.out.print("Pick a category:");
+            System.out.println("  1. Counties");
+            System.out.println("  2. Countries");
+            System.out.println("  3. Cities");
 
-		 game = new GameState(Words.randomWord(sc.nextInt()),
-				 opts.getMaxguesses(), opts.getMaxhints());
+            System.out.print("Pick a category:");
+
+            game = new GameState(Words.randomWord(sc.nextInt()),
+                     opts.getMaxguesses(), opts.getMaxhints());
 		} else {
 			game = new GameState(Words.randomWord(opts.getWordsource()),
                     opts.getMaxguesses(), opts.getMaxhints());
