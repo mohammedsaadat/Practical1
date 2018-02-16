@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Words {
 
@@ -18,13 +19,14 @@ public class Words {
             "Dundee", "Stirling", "Inverness", "Aberdeen", "Falkirk"};
 
     private static ArrayList<String> customWords;
+    private static Random random = new Random();
 
     public static String randomWord(int category) {
         if (category == 1)
-            return words1[(int) (Math.random() * 9)];
+            return words1[(random.nextInt(9))];
         if (category == 2)
-            return words2[(int) (Math.random() * 15)];
-        return words3[(int) (Math.random() * 10)];
+            return words2[random.nextInt(15)];
+        return words3[random.nextInt(10)];
     }
 
     public static String randomWord(String wordsource) {
