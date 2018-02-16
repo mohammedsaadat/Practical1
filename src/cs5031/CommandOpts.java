@@ -12,10 +12,8 @@ public class CommandOpts {
 	CommandOpts(String[] args) {
 		maxguesses = MAX_GUESSES;
 		maxhints = MAX_HINTS;
-		
 		wordsource = "";
-		
-		for(int i = 0; i < args.length; ++i) {
+		for (int i = 0; i < args.length; ++i) {
 			if (args[i].equals("--guesses")) {
 				maxguesses = Integer.parseInt(args[i+1]);
 				i++;
