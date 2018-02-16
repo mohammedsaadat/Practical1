@@ -19,21 +19,24 @@ GameState game; CommandOpts opts;
 
 		System.out.print("Pick a category:");
 
-		 game = new GameState(Words.randomWord(sc.nextInt()), opts.getMaxguesses(), opts.getMaxhints());
-		}
-		else {
-			game = new GameState(Words.randomWord(opts.getWordsource()), opts.getMaxguesses(), opts.getMaxhints());
+		 game = new GameState(Words.randomWord(sc.nextInt()),
+				 opts.getMaxguesses(), opts.getMaxhints());
+		} else {
+			game = new GameState(Words.randomWord(opts.getWordsource()),
+                    opts.getMaxguesses(), opts.getMaxhints());
 		}
 		
-		while(!game.won() && !game.lost()) {
+		while (!game.won() && !game.lost()) {
 			game.showWord();
 			
 			System.out.println("Guesses remaining: " + game.wrong);
 			
 			 correct = game.guessLetter();
 			
-			if (correct) System.out.println("Good guess!");
-			if (!correct) System.out.println("Wrong guess!");
+			if (correct)
+			    System.out.println("Good guess!");
+			if (!correct)
+			    System.out.println("Wrong guess!");
 		}
 		
 		if (game.won()) {
