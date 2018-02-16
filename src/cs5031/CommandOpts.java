@@ -1,40 +1,40 @@
 package cs5031;
 
 public class CommandOpts {
-	private int maxguesses;
-	private int maxhints;
+	private int maxGuesses;
+	private int maxHints;
 
-	private String wordsource;
+	private String wordSource;
 
 	private static final int MAX_GUESSES = 10;
 	private static final int MAX_HINTS = 2;
 
 	CommandOpts(String[] args) {
-		maxguesses = MAX_GUESSES;
-		maxhints = MAX_HINTS;
-		wordsource = "";
+        maxGuesses = MAX_GUESSES;
+        maxHints = MAX_HINTS;
+        wordSource = "";
 		for (int i = 0; i < args.length; ++i) {
 			if (args[i].equals("--guesses")) {
-				maxguesses = Integer.parseInt(args[i + 1]);
+                maxGuesses = Integer.parseInt(args[i + 1]);
 				i++;
 			} else if (args[i].equals("--hints")) {
-				maxhints = Integer.parseInt(args[i + 1]);
+                maxHints = Integer.parseInt(args[i + 1]);
 				i++;
 			} else {
-                wordsource = args[i];
+                wordSource = args[i];
             }
 		}
 	}
 
     public int getMaxguesses() {
-        return maxguesses;
+        return maxGuesses;
     }
 
     public int getMaxhints() {
-        return maxhints;
+        return maxHints;
     }
 
     public String getWordsource() {
-        return wordsource;
+        return wordSource;
     }
 }
