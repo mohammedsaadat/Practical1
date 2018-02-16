@@ -1,10 +1,10 @@
 package cs5031;
 
 public class CommandOpts {
-	public int maxguesses;
-	public int maxhints;
+	private int maxguesses;
+	private int maxhints;
 	
-	String wordsource;
+	private String wordsource;
 	
 	CommandOpts(String[] args) {
 		maxguesses = 10;
@@ -24,4 +24,16 @@ public class CommandOpts {
 			else wordsource = args[i];
 		}
 	}
+
+    public int getMaxguesses() {
+        return maxguesses;
+    }
+
+    public int getMaxhints() {
+        return maxhints;
+    }
+
+    public String getWordsource() {
+        return wordsource;
+    }
 }

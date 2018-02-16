@@ -11,7 +11,7 @@ GameState game; CommandOpts opts;
 		
 		opts = new CommandOpts(args);
 		
-		if (opts.wordsource == "") {
+		if (opts.getWordsource() == "") {
 		
 		System.out.println("  1. Counties");
 		System.out.println("  2. Countries");
@@ -19,10 +19,10 @@ GameState game; CommandOpts opts;
 
 		System.out.print("Pick a category:");
 
-		 game = new GameState(Words.randomWord(sc.nextInt()), opts.maxguesses, opts.maxhints);
+		 game = new GameState(Words.randomWord(sc.nextInt()), opts.getMaxguesses(), opts.getMaxhints());
 		}
 		else {
-			game = new GameState(Words.randomWord(opts.wordsource), opts.maxguesses, opts.maxhints);
+			game = new GameState(Words.randomWord(opts.getWordsource()), opts.getMaxguesses(), opts.getMaxhints());
 		}
 		
 		while(!game.won() && !game.lost()) {
