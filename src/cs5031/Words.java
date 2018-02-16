@@ -16,8 +16,8 @@ public class Words {
 			            "Belgium", "Luxembourg", "Switzerland", "Italy", "Greece"};
 	private static String[] words3 = {"St Andrews", "Edinburgh", "Glasgow", "Kirkcaldy", "Perth",
 			            "Dundee", "Stirling", "Inverness", "Aberdeen", "Falkirk"};
-			
-	static ArrayList<String> customwords;
+
+	private static ArrayList<String> customWords;
 	
 	public static String randomWord(int category) {
 		if (category == 1)
@@ -28,16 +28,16 @@ public class Words {
 	}
 	
 	public static String randomWord(String wordsource) {
-		String line;
-		customwords = new ArrayList<String>();
+	    String line;
+	    customWords = new ArrayList<String>();
 		
 		try {
 			FileReader file = new FileReader(wordsource);
 			BufferedReader reader = new BufferedReader(file);
 			while((line = reader.readLine()) != null) {
-                customwords.add(line);
+                customWords.add(line);
             }
-			return customwords.get((int)(Math.random()*customwords.size()));
+			return customWords.get((int)(Math.random()*customWords.size()));
 		} catch(FileNotFoundException e) {
 			System.out.println("File error");
 			return "";
