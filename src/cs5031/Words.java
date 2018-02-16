@@ -21,10 +21,10 @@ public class Words {
 	
 	public static String randomWord(int category) {
 		if (category == 1)
-			return words1[(int) (Math.random()*9)];
+			return words1[(int) (Math.random() * 9)];
 		if (category == 2)
-			return words2[(int) (Math.random()*15)];
-		return words3[(int) (Math.random()*10)];
+			return words2[(int) (Math.random() * 15)];
+		return words3[(int) (Math.random() * 10)];
 	}
 	
 	public static String randomWord(String wordsource) {
@@ -37,7 +37,7 @@ public class Words {
 			while((line = reader.readLine()) != null) {
                 customWords.add(line);
             }
-			return customWords.get((int)(Math.random()*customWords.size()));
+			return customWords.get((int)(Math.random() * customWords.size()));
 		} catch(FileNotFoundException e) {
 			System.out.println("File error");
 			return "";
