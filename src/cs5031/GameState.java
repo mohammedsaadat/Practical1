@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GameState {
-	public String word;
-	public int g;
-	public int wrong;
-	public int h;
+	private String word;
+	private int g;
+	private int wrong;
+	private int h;
 	
 	ArrayList<Character> got;
 	ArrayList<Character> not;
@@ -29,8 +29,24 @@ public class GameState {
 		wrong = g;
 		this.h = h;
 	}
-	
-	void showWord() {
+
+    public String getWord() {
+        return word;
+    }
+
+    public int getG() {
+        return g;
+    }
+
+    public int getWrong() {
+        return wrong;
+    }
+
+    public int getH() {
+        return h;
+    }
+
+    void showWord() {
 		for (int i = 0; i < word.length(); ++i) {
 			if (got.contains(word.charAt(i))) {
 				System.out.print(word.charAt(i));
@@ -94,4 +110,6 @@ public class GameState {
 		System.out.print("Try: ");
 		System.out.println(not.get((int)(Math.random()*not.size())));
 	}
+
+
 }
