@@ -15,16 +15,15 @@ public class GameState {
 	private Scanner sc = new Scanner(System.in).useDelimiter("\n");
 	
 	public GameState(String target, int g, int h) {
-		this.word = target;
-		not = new ArrayList<Character>();
-		   got = new ArrayList<Character>();
+	    this.word = target;
+	    not = new ArrayList<Character>();
+	    got = new ArrayList<Character>();
 		
 		for(int i = 0; i < target.length(); ++i) {
 			if (!not.contains(Character.toLowerCase(target.charAt(i))))
 			not.add(Character.toLowerCase(target.charAt(i)));
 		}
-		//System.out.println(missing);
-		
+
 		this.g = 0;
 		wrong = g;
 		this.h = h;
@@ -52,7 +51,6 @@ public class GameState {
 			}
 		}
 		System.out.println("");
-		// System.out.println(missing);
 	}
 	
 	boolean guessLetter() {
