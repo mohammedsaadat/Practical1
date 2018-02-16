@@ -9,10 +9,10 @@ public class GameState {
 	private int wrong;
 	private int h;
 	
-	ArrayList<Character> got;
-	ArrayList<Character> not;
+	private ArrayList<Character> got;
+	private ArrayList<Character> not;
 	
-	public Scanner sc = new Scanner(System.in).useDelimiter("\n");
+	private Scanner sc = new Scanner(System.in).useDelimiter("\n");
 	
 	public GameState(String target, int g, int h) {
 		this.word = target;
@@ -33,15 +33,12 @@ public class GameState {
     public String getWord() {
         return word;
     }
-
     public int getG() {
         return g;
     }
-
     public int getWrong() {
         return wrong;
     }
-
     public int getH() {
         return h;
     }
