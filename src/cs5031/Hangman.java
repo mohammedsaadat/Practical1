@@ -8,11 +8,8 @@ public class Hangman {
 		Scanner sc = new Scanner(System.in);
         GameState game; CommandOpts opts;
 		boolean correct;
-		
 		opts = new CommandOpts(args);
-		
 		if (opts.getWordsource() == "") {
-
             System.out.println("  1. Counties");
             System.out.println("  2. Countries");
             System.out.println("  3. Cities");
@@ -25,20 +22,15 @@ public class Hangman {
 			game = new GameState(Words.randomWord(opts.getWordsource()),
                     opts.getMaxguesses(), opts.getMaxhints());
 		}
-		
 		while (!game.won() && !game.lost()) {
 			game.showWord();
-			
 			System.out.println("Guesses remaining: " + game.wrong);
-			
-			 correct = game.guessLetter();
-			
+            correct = game.guessLetter();
 			if (correct)
 			    System.out.println("Good guess!");
 			if (!correct)
 			    System.out.println("Wrong guess!");
 		}
-		
 		if (game.won()) {
 			System.out.println("Well done!");
 			System.out.println("You took " + game.g + " guesses");
@@ -46,5 +38,4 @@ public class Hangman {
 			System.out.println("You lost! The word was " + game.word);
 		}
 	}
-
 }
