@@ -19,7 +19,7 @@ public class GameState {
 	    not = new ArrayList<Character>();
 	    got = new ArrayList<Character>();
 		
-		for(int i = 0; i < target.length(); ++i) {
+		for (int i = 0; i < target.length(); ++i) {
 			if (!not.contains(Character.toLowerCase(target.charAt(i))))
 			not.add(Character.toLowerCase(target.charAt(i)));
 		}
@@ -75,7 +75,7 @@ public class GameState {
 			return false;
 		}
 		
-		for(i = 0; i < not.size(); ++i) { // Loop over the not got
+		for (i = 0; i < not.size(); ++i) { // Loop over the not got
 			if (not.get(i) == letter) {
 				not.remove(i);
 				got.add(letter);
@@ -90,11 +90,11 @@ public class GameState {
 	}
 	
 	boolean won() {
-		if (not.size() == 0) return true; else return false;
+	    return not.size() == 0;
 	}
 
 	boolean lost() {
-		if (not.size() > 0 && wrong == 0) return true; else return false;
+	    return (not.size() > 0 && wrong == 0);
 	}
 
 	void hint() {
@@ -103,7 +103,7 @@ public class GameState {
 		}
 		
 		System.out.print("Try: ");
-		System.out.println(not.get((int)(Math.random()*not.size())));
+		System.out.println(not.get((int) (Math.random() * not.size())));
 	}
 
 
