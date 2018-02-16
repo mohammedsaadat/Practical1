@@ -8,14 +8,14 @@ import java.util.ArrayList;
 
 public class Words {
 
-	static String[] words1 = { "Argyll and Bute", "Caithness",  "Kingdom of Fife",
+	private static String[] words1 = {"Argyll and Bute", "Caithness",  "Kingdom of Fife",
 			            "East Lothian", "Highland", "Dumfries and Galloway",
-			            "Renfrewshire", "Scottish Borders", "Perth and Kinross" };
-	static String[] words2 = { "Scotland", "England", "Wales", "Northern Ireland", "Ireland", 
+			            "Renfrewshire", "Scottish Borders", "Perth and Kinross"};
+	private static String[] words2 = {"Scotland", "England", "Wales", "Northern Ireland", "Ireland",
 			            "France", "Germany", "Netherlands", "Spain", "Portugal",
-			            "Belgium", "Luxembourg", "Switzerland", "Italy", "Greece" };
-	static String[] words3 = { "St Andrews", "Edinburgh", "Glasgow", "Kirkcaldy", "Perth",
-			            "Dundee", "Stirling", "Inverness", "Aberdeen", "Falkirk" };
+			            "Belgium", "Luxembourg", "Switzerland", "Italy", "Greece"};
+	private static String[] words3 = {"St Andrews", "Edinburgh", "Glasgow", "Kirkcaldy", "Perth",
+			            "Dundee", "Stirling", "Inverness", "Aberdeen", "Falkirk"};
 			
 	static ArrayList<String> customwords;
 	
