@@ -30,20 +30,19 @@ public class Words {
 	public static String randomWord(String wordsource) {
 	    String line;
 	    customWords = new ArrayList<String>();
-		
 		try {
 			FileReader file = new FileReader(wordsource);
 			BufferedReader reader = new BufferedReader(file);
-			while((line = reader.readLine()) != null) {
+			while ((line = reader.readLine()) != null) {
                 customWords.add(line);
             }
-			return customWords.get((int)(Math.random() * customWords.size()));
-		} catch(FileNotFoundException e) {
+			return customWords.get((int) (Math.random() * customWords.size()));
+		} catch (FileNotFoundException e) {
 			System.out.println("File error");
 			return "";
-		} catch(IOException e) {
-		System.out.println("IO error");
-		return "";
-	}
+		} catch (IOException e) {
+            System.out.println("IO error");
+            return "";
+	    }
 	}
 }
