@@ -5,16 +5,16 @@ import java.util.Scanner;
 
 public class GameState {
     private String word;
-    private int g;
-    private int wrong;
-    private int h;
+    private int guesses;
+    private int wrongGuesses;
+    private int remainingHints;
 
     private ArrayList<Character> got;
     private ArrayList<Character> not;
 
     private Scanner sc = new Scanner(System.in).useDelimiter("\n");
 
-    public GameState(String target, int g, int h) {
+    public GameState(String target, int maxGuesses, int maxHints) {
         this.word = target;
         not = new ArrayList<Character>();
         got = new ArrayList<Character>();
@@ -24,25 +24,25 @@ public class GameState {
                 not.add(Character.toLowerCase(target.charAt(i)));
         }
 
-        this.g = 0;
-        wrong = g;
-        this.h = h;
+        this.guesses = 0;
+        wrongGuesses = maxGuesses;
+        this.remainingHints = maxHints;
     }
 
     public String getWord() {
         return word;
     }
 
-    public int getG() {
-        return g;
+    public int getGuesses() {
+        return guesses;
     }
 
-    public int getWrong() {
-        return wrong;
+    public int getWrongGuesses() {
+        return wrongGuesses;
     }
 
-    public int getH() {
-        return h;
+    public int getRemainingHints() {
+        return remainingHints;
     }
 
     void showWord() {
@@ -82,13 +82,13 @@ public class GameState {
             if (not.get(i) == letter) {
                 not.remove(i);
                 got.add(letter);
-                g++;
+                guesses++;
                 return true;
             }
         }
 
-        g++; // One more guess
-        wrong--;
+        guesses++; // One more guess
+        wrongGuesses--;
         return false;
     }
 
@@ -97,11 +97,11 @@ public class GameState {
     }
 
     boolean lost() {
-        return (not.size() > 0 && wrong == 0);
+        return (not.size() > 0 && wrongGuesses == 0);
     }
 
     void hint() {
-        if (h == 0) {
+        if (remainingHints == 0) {
             System.out.println("No more hints allowed");
         }
 
