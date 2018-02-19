@@ -23,4 +23,9 @@ public class CommandOptsTest {
         assertEquals(opts.getWordsource(), "words.txt");
     }
 
+    @Test(expected = NumberFormatException.class)
+    public void testWrongArgs() {
+        String[] args = {"--guesses", "--hints", "4", "words.txt"};
+        CommandOpts opts = new CommandOpts(args);
+    }
 }

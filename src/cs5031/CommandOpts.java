@@ -9,12 +9,11 @@ public class CommandOpts {
     static final int MAX_GUESSES = 10;
     static final int MAX_HINTS = 2;
 
-    CommandOpts(String[] args) {
+    CommandOpts(String[] args) throws NumberFormatException{
         maxGuesses = MAX_GUESSES;
         maxHints = MAX_HINTS;
         wordSource = "";
         for (int i = 0; i < args.length; ++i) {
-
             switch (args[i]) {
                 case "--guesses":
                     maxGuesses = Integer.parseInt(args[i + 1]);
