@@ -9,13 +9,13 @@ import java.util.Random;
 
 public class Words {
 
-    private static String[] words1 = {"Argyll and Bute", "Caithness", "Kingdom of Fife",
+    private static String[] counties = {"Argyll and Bute", "Caithness", "Kingdom of Fife",
             "East Lothian", "Highland", "Dumfries and Galloway",
             "Renfrewshire", "Scottish Borders", "Perth and Kinross"};
-    private static String[] words2 = {"Scotland", "England", "Wales", "Northern Ireland", "Ireland",
+    private static String[] countries = {"Scotland", "England", "Wales", "Northern Ireland", "Ireland",
             "France", "Germany", "Netherlands", "Spain", "Portugal",
             "Belgium", "Luxembourg", "Switzerland", "Italy", "Greece"};
-    private static String[] words3 = {"St Andrews", "Edinburgh", "Glasgow", "Kirkcaldy", "Perth",
+    private static String[] cities = {"St Andrews", "Edinburgh", "Glasgow", "Kirkcaldy", "Perth",
             "Dundee", "Stirling", "Inverness", "Aberdeen", "Falkirk"};
 
     private static ArrayList<String> customWords;
@@ -23,10 +23,10 @@ public class Words {
 
     public static String randomWord(int category) {
         if (category == 1)
-            return words1[(random.nextInt(9))];
+            return counties[(random.nextInt(9))];
         if (category == 2)
-            return words2[random.nextInt(15)];
-        return words3[random.nextInt(10)];
+            return countries[random.nextInt(15)];
+        return cities[random.nextInt(10)];
     }
 
     public static String randomWord(String wordsource) {
