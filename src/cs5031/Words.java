@@ -38,6 +38,8 @@ public class Words {
             while ((line = reader.readLine()) != null) {
                 customWords.add(line);
             }
+
+            reader.close();
             return customWords.get((int) (Math.random() * customWords.size()));
         } catch (FileNotFoundException e) {
             System.out.println("File error");
