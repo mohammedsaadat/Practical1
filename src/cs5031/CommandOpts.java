@@ -6,22 +6,29 @@ public class CommandOpts {
 
     private String wordSource;
 
-    private static final int MAX_GUESSES = 10;
-    private static final int MAX_HINTS = 2;
+    static final int MAX_GUESSES = 10;
+    static final int MAX_HINTS = 2;
 
     CommandOpts(String[] args) {
         maxGuesses = MAX_GUESSES;
         maxHints = MAX_HINTS;
         wordSource = "";
         for (int i = 0; i < args.length; ++i) {
-            if (args[i].equals("--guesses")) {
-                maxGuesses = Integer.parseInt(args[i + 1]);
-                i++;
-            } else if (args[i].equals("--hints")) {
-                maxHints = Integer.parseInt(args[i + 1]);
-                i++;
-            } else {
-                wordSource = args[i];
+
+            switch (args[i]) {
+                case "--guesses":
+                    maxGuesses = Integer.parseInt(args[i + 1]);
+                    i++;
+                    break;
+
+                case "--hints":
+                    maxHints = Integer.parseInt(args[i + 1]);
+                    i++;
+                    break;
+
+                default:
+                    wordSource = args[i];
+                    break;
             }
         }
     }
