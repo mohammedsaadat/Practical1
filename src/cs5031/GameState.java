@@ -16,8 +16,8 @@ public class GameState {
 
     public GameState(String target, int maxGuesses, int maxHints) {
         this.word = target;
-        unguessedLetters = new ArrayList<Character>();
-        guessedLetters = new ArrayList<Character>();
+        unguessedLetters = new ArrayList<>();
+        guessedLetters = new ArrayList<>();
 
         for (int i = 0; i < target.length(); ++i) {
             if (!unguessedLetters.contains(Character.toLowerCase(target.charAt(i))))
