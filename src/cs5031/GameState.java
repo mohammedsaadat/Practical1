@@ -9,19 +9,19 @@ public class GameState {
     private int wrongGuesses;
     private int remainingHints;
 
-    private ArrayList<Character> got;
-    private ArrayList<Character> not;
+    private ArrayList<Character> guessedLetters;
+    private ArrayList<Character> unguessedLetters;
 
     private Scanner sc = new Scanner(System.in).useDelimiter("\n");
 
     public GameState(String target, int maxGuesses, int maxHints) {
         this.word = target;
-        not = new ArrayList<Character>();
-        got = new ArrayList<Character>();
+        unguessedLetters = new ArrayList<Character>();
+        guessedLetters = new ArrayList<Character>();
 
         for (int i = 0; i < target.length(); ++i) {
-            if (!not.contains(Character.toLowerCase(target.charAt(i))))
-                not.add(Character.toLowerCase(target.charAt(i)));
+            if (!unguessedLetters.contains(Character.toLowerCase(target.charAt(i))))
+                unguessedLetters.add(Character.toLowerCase(target.charAt(i)));
         }
 
         this.guesses = 0;
@@ -47,7 +47,7 @@ public class GameState {
 
     void showWord() {
         for (int i = 0; i < word.length(); ++i) {
-            if (got.contains(word.charAt(i))) {
+            if (guessedLetters.contains(word.charAt(i))) {
                 System.out.print(word.charAt(i));
             } else {
                 System.out.print("-");
@@ -65,7 +65,7 @@ public class GameState {
 
         if (str.length() > 1) {
             if (str == word) {
-                not.clear();
+                unguessedLetters.clear();
                 return true;
             } else return false;
         }
@@ -77,10 +77,10 @@ public class GameState {
             return false;
         }
 
-        for (int i = 0; i < not.size(); ++i) { // Loop over the not got
-            if (not.get(i) == letter) {
-                not.remove(i);
-                got.add(letter);
+        for (int i = 0; i < unguessedLetters.size(); ++i) { // Loop over the not got
+            if (unguessedLetters.get(i) == letter) {
+                unguessedLetters.remove(i);
+                guessedLetters.add(letter);
                 guesses++;
                 return true;
             }
@@ -92,11 +92,11 @@ public class GameState {
     }
 
     boolean won() {
-        return not.size() == 0;
+        return unguessedLetters.size() == 0;
     }
 
     boolean lost() {
-        return (not.size() > 0 && wrongGuesses == 0);
+        return (unguessedLetters.size() > 0 && wrongGuesses == 0);
     }
 
     void hint() {
@@ -105,7 +105,7 @@ public class GameState {
         }
 
         System.out.print("Try: ");
-        System.out.println(not.get((int) (Math.random() * not.size())));
+        System.out.println(unguessedLetters.get((int) (Math.random() * unguessedLetters.size())));
     }
 
 
