@@ -57,7 +57,6 @@ public class GameState {
     }
 
     boolean guessLetter() {
-        int i;
         char letter;
 
         System.out.print("Guess a letter or word (? for a hint): ");
@@ -78,7 +77,7 @@ public class GameState {
             return false;
         }
 
-        for (i = 0; i < not.size(); ++i) { // Loop over the not got
+        for (int i = 0; i < not.size(); ++i) { // Loop over the not got
             if (not.get(i) == letter) {
                 not.remove(i);
                 got.add(letter);
