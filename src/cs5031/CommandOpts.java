@@ -40,6 +40,11 @@ public class CommandOpts {
         maxGuesses = MAX_GUESSES;
         maxHints = MAX_HINTS;
         wordSource = "";
+
+        if (args == null) {
+            return;
+        }
+
         for (int i = 0; i < args.length; ++i) {
             switch (args[i]) {
                 case "--guesses":

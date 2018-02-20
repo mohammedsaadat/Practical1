@@ -6,7 +6,7 @@ package cs5031;
 public class WrongCategoryException extends Exception {
 
     /**
-     * Constructor that creates an instance of WrongCategoryException. 
+     * Constructor that creates an instance of WrongCategoryException.
      */
     public WrongCategoryException() {
         super();
