@@ -66,8 +66,9 @@ public class CommandOpts {
                     i++;
                     break;
 
-                default:
-                    wordSource = args[i];
+                case "--source":
+                    wordSource = args[i+1];
+                    i++;
                     break;
             }
         }

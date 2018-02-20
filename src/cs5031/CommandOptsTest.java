@@ -8,7 +8,7 @@ public class CommandOptsTest {
 
 	@Test
 	public void optionsTest() {
-		String[] args = {"--guesses", "2", "--hints", "4", "words.txt"};
+		String[] args = {"--guesses", "2", "--hints", "4", "--source", "words.txt"};
 		CommandOpts opts = new CommandOpts();
 		opts.parseArgument(args);
 		assertEquals(opts.getMaxguesses(), 2);
@@ -18,7 +18,7 @@ public class CommandOptsTest {
 
 	@Test
 	public void testOneInputArgs() {
-        String[] args = {"words.txt"};
+        String[] args = {"--source", "words.txt"};
         CommandOpts opts = new CommandOpts();
         opts.parseArgument(args);
         assertEquals(opts.getMaxguesses(), CommandOpts.MAX_GUESSES);
@@ -28,14 +28,14 @@ public class CommandOptsTest {
 
     @Test(expected = NumberFormatException.class)
     public void testWrongArgs() {
-        String[] args = {"--guesses", "--hints", "4", "words.txt"};
+        String[] args = {"--guesses", "--hints", "4", "--source", "words.txt"};
         CommandOpts opts = new CommandOpts();
         opts.parseArgument(args);
     }
 
     @Test
     public void testOptionDifferentOrder() {
-        String[] args = {"--hints", "2", "--guesses", "4", "words.txt"};
+        String[] args = {"--hints", "2", "--guesses", "4", "--source", "words.txt"};
         CommandOpts opts = new CommandOpts();
         opts.parseArgument(args);
         assertEquals(opts.getMaxguesses(), 4);
@@ -45,7 +45,7 @@ public class CommandOptsTest {
 
     @Test
     public void testOptionDifferentOrder2() {
-        String[] args = {"words.txt", "--hints", "4", "--guesses", "2"};
+        String[] args = {"--source", "words.txt", "--hints", "4", "--guesses", "2"};
         CommandOpts opts = new CommandOpts();
         opts.parseArgument(args);
         assertEquals(opts.getMaxguesses(), 2);
@@ -66,6 +66,16 @@ public class CommandOptsTest {
     @Test
     public void testOptionWithNullArgument() {
         String[] args = null;
+        CommandOpts opts = new CommandOpts();
+        opts.parseArgument(args);
+        assertEquals(opts.getMaxguesses(), CommandOpts.MAX_GUESSES);
+        assertEquals(opts.getMaxhints(), CommandOpts.MAX_HINTS);
+        assertEquals(opts.getWordsource(), "");
+    }
+
+    @Test
+    public void testOptionWithWrongArguments() {
+        String[] args = {"-source", "words.txt", "-hints", "4", "--bla", "2"};
         CommandOpts opts = new CommandOpts();
         opts.parseArgument(args);
         assertEquals(opts.getMaxguesses(), CommandOpts.MAX_GUESSES);
