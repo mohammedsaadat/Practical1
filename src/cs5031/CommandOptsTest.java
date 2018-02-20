@@ -28,4 +28,23 @@ public class CommandOptsTest {
         String[] args = {"--guesses", "--hints", "4", "words.txt"};
         CommandOpts opts = new CommandOpts(args);
     }
+
+    @Test
+    public void testOptionDifferentOrder() {
+        String[] args = {"--hints", "2", "--guesses", "4", "words.txt"};
+        CommandOpts opts = new CommandOpts(args);
+        assertEquals(opts.getMaxguesses(), 4);
+        assertEquals(opts.getMaxhints(), 2);
+        assertEquals(opts.getWordsource(), "words.txt");
+	}
+
+    @Test
+    public void testOptionDifferentOrder2() {
+        String[] args = {"words.txt", "--hints", "4", "--guesses", "2"};
+        CommandOpts opts = new CommandOpts(args);
+        assertEquals(opts.getMaxguesses(), 2);
+        assertEquals(opts.getMaxhints(), 4);
+        assertEquals(opts.getWordsource(), "words.txt");
+    }
+    
 }
