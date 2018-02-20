@@ -46,5 +46,13 @@ public class CommandOptsTest {
         assertEquals(opts.getMaxhints(), 4);
         assertEquals(opts.getWordsource(), "words.txt");
     }
-    
+
+    @Test
+    public void testOptionWithNoArgument() {
+        String[] args = {};
+        CommandOpts opts = new CommandOpts(args);
+        assertEquals(opts.getMaxguesses(), CommandOpts.MAX_GUESSES);
+        assertEquals(opts.getMaxhints(), CommandOpts.MAX_HINTS);
+        assertEquals(opts.getWordsource(), "");
+    }
 }
