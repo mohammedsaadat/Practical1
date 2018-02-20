@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class GameState {
     private String word;
     private int guesses;
-    private int wrongGuesses;
+    private int remainingGuesses;
     private int remainingHints;
 
     private ArrayList<Character> guessedLetters;
@@ -25,7 +25,7 @@ public class GameState {
         }
 
         this.guesses = 0;
-        wrongGuesses = maxGuesses;
+        remainingGuesses = maxGuesses;
         this.remainingHints = maxHints;
     }
 
@@ -37,8 +37,8 @@ public class GameState {
         return guesses;
     }
 
-    public int getWrongGuesses() {
-        return wrongGuesses;
+    public int getRemainingGuesses() {
+        return remainingGuesses;
     }
 
     public int getRemainingHints() {
@@ -87,7 +87,7 @@ public class GameState {
         }
 
         guesses++; // One more guess
-        wrongGuesses--;
+        remainingGuesses--;
         return false;
     }
 
@@ -96,7 +96,7 @@ public class GameState {
     }
 
     boolean lost() {
-        return (unGuessedLetters.size() > 0 && wrongGuesses == 0);
+        return (unGuessedLetters.size() > 0 && remainingGuesses == 0);
     }
 
     void hint() {
