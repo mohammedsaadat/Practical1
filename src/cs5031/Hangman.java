@@ -21,6 +21,7 @@ public class Hangman {
             try {
                 game = new GameState(WordPicker.getRandomWord(sc.nextInt()),
                         opts.getMaxguesses(), opts.getMaxhints());
+                game.initialiseUnGuessedArray(game.getWord(), game.getUnGuessedLetters());
             } catch (WrongCategoryException e) {
                 System.out.println("Wrong Category Choice");
             }
