@@ -81,7 +81,7 @@ public class WordPicker {
             }
 
             reader.close();
-            return customWords.get((int) (Math.random() * customWords.size()));
+            return customWords.get(random.nextInt(customWords.size()));
         } catch (FileNotFoundException e) {
             System.out.println("File error");
             return "";
