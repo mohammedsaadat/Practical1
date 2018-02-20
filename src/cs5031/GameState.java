@@ -16,17 +16,26 @@ public class GameState {
 
     public GameState(String target, int maxGuesses, int maxHints) {
         this.word = target;
+        this.guesses = 0;
+        this.remainingHints = maxHints;
+        remainingGuesses = maxGuesses;
+
         unGuessedLetters = new ArrayList<>();
         guessedLetters = new ArrayList<>();
 
-        for (int i = 0; i < target.length(); ++i) {
-            if (!unGuessedLetters.contains(Character.toLowerCase(target.charAt(i))))
-                unGuessedLetters.add(Character.toLowerCase(target.charAt(i)));
-        }
+    }
 
-        this.guesses = 0;
-        remainingGuesses = maxGuesses;
-        this.remainingHints = maxHints;
+    public void initialiseUnGuessedArray(String word, ArrayList<Character> unGuessedLetters) {
+        for (int i = 0; i < word.length(); ++i) {
+            Character character = Character.toLowerCase(word.charAt(i));
+            if (!unGuessedLetters.contains(character)) {
+                unGuessedLetters.add(character);
+            }
+        }
+    }
+
+    public ArrayList<Character> getUnGuessedLetters() {
+        return unGuessedLetters;
     }
 
     public String getWord() {
