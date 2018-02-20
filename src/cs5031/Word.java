@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Word {
-
     static final int COUNTIES = 1;
     static final int COUNTRIES = 2;
     static final int CITIES = 3;

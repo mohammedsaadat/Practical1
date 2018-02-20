@@ -2,11 +2,16 @@ package cs5031;
 
 import org.junit.Test;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class WordTest {
 
@@ -32,5 +37,23 @@ public class WordTest {
     public void testRandomWordWrongInput() {
         String returnedWord = Word.randomWord(4);
         assertEquals("Wrong Input", returnedWord);
+    }
+
+    @Test
+    public void testRandomWordFileInput() {
+        String fileWord = "Hello";
+        try {
+            File file = File.createTempFile("temp", ".txt", new File("."));
+            file.deleteOnExit();
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+            bufferedWriter.write(fileWord);
+            bufferedWriter.close();
+
+            String returnedWord = Word.randomWord(file.getAbsolutePath());
+            assertEquals(fileWord, returnedWord);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
