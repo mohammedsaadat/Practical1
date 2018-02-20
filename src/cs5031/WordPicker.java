@@ -70,7 +70,7 @@ public class WordPicker {
      * @param wordSource String the represents the path to the file.
      * @return random string obtained from the file.
      */
-    public static String getRandomWord(String wordSource) {
+    public static String getRandomWord(String wordSource) throws IllegalArgumentException {
         String line;
         customWords = new ArrayList<>();
         try {

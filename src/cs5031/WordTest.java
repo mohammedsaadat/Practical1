@@ -55,4 +55,38 @@ public class WordTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testRandomWordFileInputMultipleWords() {
+        String[] fileWords = {"Hello", "Bye", "Dubai", "May"};
+        try {
+            File file = File.createTempFile("temp", ".txt", new File("."));
+            file.deleteOnExit();
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+            for (String word:fileWords) {
+                bufferedWriter.write(word+"\n");
+            }
+            bufferedWriter.close();
+
+            String returnedWord = WordPicker.getRandomWord(file.getAbsolutePath());
+            assertThat(Arrays.asList(fileWords), hasItem(returnedWord));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testRandomWordEmptyFile() {
+        try {
+            File file = File.createTempFile("temp", ".txt", new File("."));
+            file.deleteOnExit();
+
+            String returnedWord = WordPicker.getRandomWord(file.getAbsolutePath());
+            assertEquals("", returnedWord);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
