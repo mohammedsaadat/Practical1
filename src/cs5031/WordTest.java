@@ -89,4 +89,10 @@ public class WordTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testRandomWordFileDoesNotExist() {
+        String returnedWord = WordPicker.getRandomWord("herro.txt");
+        assertEquals("", returnedWord);
+    }
 }
