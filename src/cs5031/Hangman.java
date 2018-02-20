@@ -17,10 +17,10 @@ public class Hangman {
 
             System.out.print("Pick a category:");
 
-            game = new GameState(Word.randomWord(sc.nextInt()),
+            game = new GameState(WordPicker.getRandomWord(sc.nextInt()),
                     opts.getMaxguesses(), opts.getMaxhints());
         } else {
-            game = new GameState(Word.randomWord(opts.getWordsource()),
+            game = new GameState(WordPicker.getRandomWord(opts.getWordsource()),
                     opts.getMaxguesses(), opts.getMaxhints());
         }
         while (!game.won() && !game.lost()) {

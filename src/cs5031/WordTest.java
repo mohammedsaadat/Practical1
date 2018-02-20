@@ -11,31 +11,30 @@ import java.util.Arrays;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 public class WordTest {
 
     @Test
     public void testRandomWordReturnCounties() {
-        String returnedWord = Word.randomWord(Word.COUNTIES);
-        assertThat(Arrays.asList(Word.COUNTIES_WORDS), hasItem(returnedWord));
+        String returnedWord = WordPicker.getRandomWord(WordPicker.COUNTIES);
+        assertThat(Arrays.asList(WordPicker.COUNTIES_WORDS), hasItem(returnedWord));
     }
 
     @Test
     public void testRandomWordReturnCountries() {
-        String returnedWord = Word.randomWord(Word.COUNTRIES);
-        assertThat(Arrays.asList(Word.COUNTRIES_WORDS), hasItem(returnedWord));
+        String returnedWord = WordPicker.getRandomWord(WordPicker.COUNTRIES);
+        assertThat(Arrays.asList(WordPicker.COUNTRIES_WORDS), hasItem(returnedWord));
     }
 
     @Test
     public void testRandomWordReturnCities() {
-        String returnedWord = Word.randomWord(Word.CITIES);
-        assertThat(Arrays.asList(Word.CITIES_WORDS), hasItem(returnedWord));
+        String returnedWord = WordPicker.getRandomWord(WordPicker.CITIES);
+        assertThat(Arrays.asList(WordPicker.CITIES_WORDS), hasItem(returnedWord));
     }
 
     @Test
     public void testRandomWordWrongInput() {
-        String returnedWord = Word.randomWord(4);
+        String returnedWord = WordPicker.getRandomWord(4);
         assertEquals("Wrong Input", returnedWord);
     }
 
@@ -49,7 +48,7 @@ public class WordTest {
             bufferedWriter.write(fileWord);
             bufferedWriter.close();
 
-            String returnedWord = Word.randomWord(file.getAbsolutePath());
+            String returnedWord = WordPicker.getRandomWord(file.getAbsolutePath());
             assertEquals(fileWord, returnedWord);
 
         } catch (IOException e) {

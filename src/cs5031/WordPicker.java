@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Word {
+public class WordPicker {
     static final int COUNTIES = 1;
     static final int COUNTRIES = 2;
     static final int CITIES = 3;
@@ -25,7 +25,7 @@ public class Word {
     private static ArrayList<String> customWords;
     private static Random random = new Random();
 
-    public static String randomWord(int category) {
+    public static String getRandomWord(int category) {
         if (category == COUNTIES)
             return COUNTIES_WORDS[(random.nextInt(9))];
         else if (category == COUNTRIES)
@@ -36,7 +36,7 @@ public class Word {
             return "Wrong Input";
     }
 
-    public static String randomWord(String wordSource) {
+    public static String getRandomWord(String wordSource) {
         String line;
         customWords = new ArrayList<>();
         try {
