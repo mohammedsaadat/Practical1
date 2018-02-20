@@ -29,6 +29,7 @@ public class Hangman {
             try {
                 game = new GameState(WordPicker.getRandomWord(opts.getWordsource()),
                         opts.getMaxguesses(), opts.getMaxhints());
+                game.initialiseUnGuessedArray(game.getWord(), game.getUnGuessedLetters());
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
