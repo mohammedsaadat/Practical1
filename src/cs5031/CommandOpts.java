@@ -73,14 +73,26 @@ public class CommandOpts {
         }
     }
 
+    /**
+     * Returns the maximum number of guesses.
+     * @return integer that represents the maximum number of guesses
+     */
     public int getMaxguesses() {
         return maxGuesses;
     }
 
+    /**
+     * Returns the maximum number of hints.
+     * @return integer that represents the maximum number of hints.
+     */
     public int getMaxhints() {
         return maxHints;
     }
 
+    /**
+     * Returns the path to the file that contains the words.
+     * @return string the represents the path to the file with words.
+     */
     public String getWordsource() {
         return wordSource;
     }
