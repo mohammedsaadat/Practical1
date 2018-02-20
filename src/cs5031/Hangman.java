@@ -9,7 +9,8 @@ public class Hangman {
         GameState game = null;
         CommandOpts opts;
         boolean correct;
-        opts = new CommandOpts(args);
+        opts = new CommandOpts();
+        opts.parseArgument(args);
         if (opts.getWordsource() == "") {
             System.out.println("  1. Counties");
             System.out.println("  2. Countries");

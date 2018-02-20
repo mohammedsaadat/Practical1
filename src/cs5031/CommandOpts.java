@@ -30,17 +30,26 @@ public class CommandOpts {
     static final int MAX_HINTS = 2;
 
     /**
-     * Constructor for CommandOpts class which assigns the arguments to the
-     * proper variables.
-     * @param args The argument array passed from the main method.
-     * @throws NumberFormatException This is thrown whenever we have an element that can't be
-     * parsed to an integer in the argument array.
+     * Constructor for CommandOpts class which assigns maxGuesses, maxHints
+     * and wordSource to their default values.
      */
-    CommandOpts(String[] args) throws NumberFormatException{
+    CommandOpts() {
         maxGuesses = MAX_GUESSES;
         maxHints = MAX_HINTS;
         wordSource = "";
+    }
 
+    /**
+     * Handles parsing the arguments passed to their corresponding variables
+     * and assign them to it.
+     * @param args String array that is passed from the main method and it contains flags and values
+     *             for the number of maximum hints and guesses as well as the path to the file with
+     *             the words.
+     * @throws NumberFormatException This exception is thrown when the input for the maximum hints/guesses
+     *                               number is not an integer.
+     */
+    public void parseArgument(String[] args) throws NumberFormatException{
+        // in  case the argument passed is null.
         if (args == null) {
             return;
         }
