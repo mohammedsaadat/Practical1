@@ -84,4 +84,49 @@ public class GameStateTest {
         assertEquals(arrayList, expectedArrayList);
     }
 
+    @Test
+    public void testCreateShowWordStringFullWord() {
+        String word = "Love";
+        GameState gameState = new GameState(word, 10, 4);
+        ArrayList<Character> guessed = new ArrayList<>();
+        guessed.add('l');
+        guessed.add('o');
+        String result = gameState.createShowWordString(word, guessed);
+        assertEquals("Lo--", result);
+    }
+
+    @Test
+    public void testCreateShowWordStringWordWithSpace() {
+        String word = "I Love u";
+        GameState gameState = new GameState(word, 10, 4);
+        ArrayList<Character> guessed = new ArrayList<>();
+        guessed.add('l');
+        guessed.add('o');
+        guessed.add('u');
+        String result = gameState.createShowWordString(word, guessed);
+        assertEquals("- Lo-- u", result);
+    }
+
+    @Test
+    public void testCreateShowWordStringWordWithNoGuess() {
+        String word = "I Love u";
+        GameState gameState = new GameState(word, 10, 4);
+        ArrayList<Character> guessed = new ArrayList<>();
+        String result = gameState.createShowWordString(word, guessed);
+        assertEquals("- ---- -", result);
+    }
+
+    @Test
+    public void testCreateShowWordStringWordWithAllGuesses() {
+        String word = "Love u";
+        GameState gameState = new GameState(word, 10, 4);
+        ArrayList<Character> guessed = new ArrayList<>();
+        guessed.add('l');
+        guessed.add('o');
+        guessed.add('v');
+        guessed.add('e');
+        guessed.add('u');
+        String result = gameState.createShowWordString(word, guessed);
+        assertEquals(word, result);
+    }
 }

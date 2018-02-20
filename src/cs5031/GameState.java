@@ -124,15 +124,38 @@ public class GameState {
         return remainingHints;
     }
 
-    void showWord() {
-        for (int i = 0; i < word.length(); ++i) {
-            if (guessedLetters.contains(word.charAt(i))) {
-                System.out.print(word.charAt(i));
+    /**
+     * Generates the string that represents the target word in its
+     * current state with what the user has guessed so far.
+     * @param targetWord The target word the player has to guess.
+     * @param guessed ArrayList containing the letters guessed by the player.
+     * @return String that shows the current word with letters guessed only.
+     */
+    public String createShowWordString(String targetWord,
+                                       ArrayList<Character> guessed) {
+        // create string builder.
+        StringBuilder returnString = new StringBuilder();
+
+        for (int i = 0; i < targetWord.length(); ++i) {
+            Character letter = Character.toLowerCase(targetWord.charAt(i));
+            if (guessed.contains(letter)) {
+                // When printing we need the actual case of the letter.
+                returnString.append(targetWord.charAt(i));
+            } else if (targetWord.charAt(i) == ' ') {
+                returnString.append(" ");
             } else {
-                System.out.print("-");
+                returnString.append("-");
             }
         }
-        System.out.println("");
+        return returnString.toString();
+    }
+
+    /**
+     * Prints the word with the guessed letters on displayed only.
+     */
+    void showWord() {
+        String showWord = createShowWordString(word, guessedLetters);
+        System.out.println(showWord);
     }
 
     boolean guessLetter() {
@@ -189,3 +212,4 @@ public class GameState {
 
 
 }
+
