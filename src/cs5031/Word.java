@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Words {
+public class Word {
 
     private static String[] counties = {"Argyll and Bute", "Caithness", "Kingdom of Fife",
             "East Lothian", "Highland", "Dumfries and Galloway",
