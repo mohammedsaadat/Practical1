@@ -13,19 +13,19 @@ public class WordTest {
     @Test
     public void testRandomWordReturnCounties() {
         String returnedWord = Word.randomWord(Word.COUNTIES);
-        assertThat(Arrays.asList(Word.getCounties()), hasItem(returnedWord));
+        assertThat(Arrays.asList(Word.COUNTIES_WORDS), hasItem(returnedWord));
     }
 
     @Test
     public void testRandomWordReturnCountries() {
         String returnedWord = Word.randomWord(Word.COUNTRIES);
-        assertThat(Arrays.asList(Word.getCountries()), hasItem(returnedWord));
+        assertThat(Arrays.asList(Word.COUNTRIES_WORDS), hasItem(returnedWord));
     }
 
     @Test
     public void testRandomWordReturnCities() {
         String returnedWord = Word.randomWord(Word.CITIES);
-        assertThat(Arrays.asList(Word.getCities()), hasItem(returnedWord));
+        assertThat(Arrays.asList(Word.CITIES_WORDS), hasItem(returnedWord));
     }
 
     @Test

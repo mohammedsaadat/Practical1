@@ -14,13 +14,13 @@ public class Word {
     static final int CITIES = 3;
 
 
-    private static String[] counties = {"Argyll and Bute", "Caithness", "Kingdom of Fife",
+    static final String[] COUNTIES_WORDS = {"Argyll and Bute", "Caithness", "Kingdom of Fife",
             "East Lothian", "Highland", "Dumfries and Galloway",
             "Renfrewshire", "Scottish Borders", "Perth and Kinross"};
-    private static String[] countries = {"Scotland", "England", "Wales", "Northern Ireland", "Ireland",
+    static final String[] COUNTRIES_WORDS = {"Scotland", "England", "Wales", "Northern Ireland", "Ireland",
             "France", "Germany", "Netherlands", "Spain", "Portugal",
             "Belgium", "Luxembourg", "Switzerland", "Italy", "Greece"};
-    private static String[] cities = {"St Andrews", "Edinburgh", "Glasgow", "Kirkcaldy", "Perth",
+    static final String[] CITIES_WORDS = {"St Andrews", "Edinburgh", "Glasgow", "Kirkcaldy", "Perth",
             "Dundee", "Stirling", "Inverness", "Aberdeen", "Falkirk"};
 
     private static ArrayList<String> customWords;
@@ -28,11 +28,11 @@ public class Word {
 
     public static String randomWord(int category) {
         if (category == COUNTIES)
-            return counties[(random.nextInt(9))];
+            return COUNTIES_WORDS[(random.nextInt(9))];
         else if (category == COUNTRIES)
-            return countries[random.nextInt(15)];
+            return COUNTRIES_WORDS[random.nextInt(15)];
         else if (category == CITIES)
-            return cities[random.nextInt(10)];
+            return CITIES_WORDS[random.nextInt(10)];
         else
             return "Wrong Input";
     }
@@ -56,17 +56,5 @@ public class Word {
             System.out.println("IO error");
             return "";
         }
-    }
-
-    public static String[] getCounties() {
-        return counties;
-    }
-
-    public static String[] getCountries() {
-        return countries;
-    }
-
-    public static String[] getCities() {
-        return cities;
     }
 }
