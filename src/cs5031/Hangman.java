@@ -6,7 +6,7 @@ public class Hangman {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        GameState game;
+        GameState game = null;
         CommandOpts opts;
         boolean correct;
         opts = new CommandOpts(args);
@@ -16,9 +16,13 @@ public class Hangman {
             System.out.println("  3. Cities");
 
             System.out.print("Pick a category:");
+            try {
+                game = new GameState(WordPicker.getRandomWord(sc.nextInt()),
+                        opts.getMaxguesses(), opts.getMaxhints());
+            } catch (WrongCategoryException e) {
+                System.out.println("Wrong Category Choice");
+            }
 
-            game = new GameState(WordPicker.getRandomWord(sc.nextInt()),
-                    opts.getMaxguesses(), opts.getMaxhints());
         } else {
             game = new GameState(WordPicker.getRandomWord(opts.getWordsource()),
                     opts.getMaxguesses(), opts.getMaxhints());

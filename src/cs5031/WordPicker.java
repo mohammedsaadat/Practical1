@@ -54,7 +54,7 @@ public class WordPicker {
      * @param category Integer refers to the category (Counties = 1, Countries = 2, Cities = 3).
      * @return String represents a random word from the selected category.
      */
-    public static String getRandomWord(int category) {
+    public static String getRandomWord(int category) throws WrongCategoryException {
         if (category == COUNTIES)
             return COUNTIES_WORDS[(random.nextInt(COUNTIES_WORDS.length))];
         else if (category == COUNTRIES)
@@ -62,7 +62,7 @@ public class WordPicker {
         else if (category == CITIES)
             return CITIES_WORDS[random.nextInt(CITIES_WORDS.length)];
         else
-            return "Wrong Input";
+            throw new WrongCategoryException();
     }
 
     /**

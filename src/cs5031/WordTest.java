@@ -15,25 +15,25 @@ import static org.junit.Assert.assertThat;
 public class WordTest {
 
     @Test
-    public void testRandomWordReturnCounties() {
+    public void testRandomWordReturnCounties() throws WrongCategoryException {
         String returnedWord = WordPicker.getRandomWord(WordPicker.COUNTIES);
         assertThat(Arrays.asList(WordPicker.COUNTIES_WORDS), hasItem(returnedWord));
     }
 
     @Test
-    public void testRandomWordReturnCountries() {
+    public void testRandomWordReturnCountries() throws WrongCategoryException {
         String returnedWord = WordPicker.getRandomWord(WordPicker.COUNTRIES);
         assertThat(Arrays.asList(WordPicker.COUNTRIES_WORDS), hasItem(returnedWord));
     }
 
     @Test
-    public void testRandomWordReturnCities() {
+    public void testRandomWordReturnCities() throws WrongCategoryException {
         String returnedWord = WordPicker.getRandomWord(WordPicker.CITIES);
         assertThat(Arrays.asList(WordPicker.CITIES_WORDS), hasItem(returnedWord));
     }
 
-    @Test
-    public void testRandomWordWrongInput() {
+    @Test(expected = WrongCategoryException.class)
+    public void testRandomWordWrongInput() throws WrongCategoryException {
         String returnedWord = WordPicker.getRandomWord(4);
         assertEquals("Wrong Input", returnedWord);
     }

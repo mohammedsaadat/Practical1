@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class CommandOptsTest {
+
 	@Test
 	public void optionsTest() {
 		String[] args = {"--guesses", "2", "--hints", "4", "words.txt"};
