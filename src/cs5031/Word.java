@@ -37,11 +37,11 @@ public class Word {
             return "Wrong Input";
     }
 
-    public static String randomWord(String wordsource) {
+    public static String randomWord(String wordSource) {
         String line;
-        customWords = new ArrayList<String>();
+        customWords = new ArrayList<>();
         try {
-            FileReader file = new FileReader(wordsource);
+            FileReader file = new FileReader(wordSource);
             BufferedReader reader = new BufferedReader(file);
             while ((line = reader.readLine()) != null) {
                 customWords.add(line);
