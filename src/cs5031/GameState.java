@@ -74,7 +74,11 @@ public class GameState {
                                          ArrayList<Character> wordCharacters) {
         for (int i = 0; i < targetWord.length(); ++i) {
             Character character = Character.toLowerCase(targetWord.charAt(i));
-            if (!wordCharacters.contains(character)) {
+            /*
+             We don't need to consider spaces as characters, players do
+             not need to guess them.
+            */
+            if (!wordCharacters.contains(character) && character != ' ') {
                 wordCharacters.add(character);
             }
         }

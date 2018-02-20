@@ -65,4 +65,23 @@ public class GameStateTest {
         assertEquals(arrayList, expectedArrayList);
     }
 
+
+    @Test
+    public void testInitialisingUnGuessedArrayWithSpacedInput() {
+        String word = "Love u";
+        GameState gameState = new GameState(word, 10, 4);
+        ArrayList<Character> arrayList = new ArrayList<>();
+        ArrayList<Character> expectedArrayList = new ArrayList<>();
+
+        expectedArrayList.add('l');
+        expectedArrayList.add('o');
+        expectedArrayList.add('v');
+        expectedArrayList.add('e');
+        expectedArrayList.add('u');
+
+        gameState.initialiseUnGuessedArray(word, arrayList);
+
+        assertEquals(arrayList, expectedArrayList);
+    }
+
 }
