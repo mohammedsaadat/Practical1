@@ -8,6 +8,17 @@ import java.util.ArrayList;
 
 public class GameStateTest {
 
+    @Test
+    public void testGameStateConstructor() {
+        String word = "LOVE";
+        GameState gameState = new GameState(word, 20, 20);
+
+        assertEquals(gameState.getWord(), word);
+        assertEquals(gameState.getRemainingGuesses(), 20);
+        assertEquals(gameState.getGuesses(), 0);
+        assertEquals(gameState.getRemainingHints(), 20);
+    }
+
 	@Test
 	public void testInitialisingUnGuessedArray() {
 	    String word = "hero";
