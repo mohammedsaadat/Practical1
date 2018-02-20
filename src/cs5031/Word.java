@@ -9,6 +9,11 @@ import java.util.Random;
 
 public class Word {
 
+    static final int COUNTIES = 1;
+    static final int COUNTRIES = 2;
+    static final int CITIES = 3;
+
+
     private static String[] counties = {"Argyll and Bute", "Caithness", "Kingdom of Fife",
             "East Lothian", "Highland", "Dumfries and Galloway",
             "Renfrewshire", "Scottish Borders", "Perth and Kinross"};
@@ -22,11 +27,14 @@ public class Word {
     private static Random random = new Random();
 
     public static String randomWord(int category) {
-        if (category == 1)
+        if (category == COUNTIES)
             return counties[(random.nextInt(9))];
-        if (category == 2)
+        else if (category == COUNTRIES)
             return countries[random.nextInt(15)];
-        return cities[random.nextInt(10)];
+        else if (category == CITIES)
+            return cities[random.nextInt(10)];
+        else
+            return "Wrong Input";
     }
 
     public static String randomWord(String wordsource) {
@@ -48,5 +56,17 @@ public class Word {
             System.out.println("IO error");
             return "";
         }
+    }
+
+    public static String[] getCounties() {
+        return counties;
+    }
+
+    public static String[] getCountries() {
+        return countries;
+    }
+
+    public static String[] getCities() {
+        return cities;
     }
 }
