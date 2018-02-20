@@ -46,7 +46,7 @@ public class Hangman {
             System.out.println("Well done!");
             System.out.println("You took " + game.getGuesses() + " guesses");
         } else {
-            System.out.println("You lost! The word was " + game.getWrongGuesses());
+            System.out.println("You lost! The word was " + game.getWord());
         }
     }
 }
