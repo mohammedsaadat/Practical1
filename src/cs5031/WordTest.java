@@ -2,10 +2,7 @@ package cs5031;
 
 import org.junit.Test;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.hasItem;
@@ -90,9 +87,8 @@ public class WordTest {
         }
     }
 
-    @Test
-    public void testRandomWordFileDoesNotExist() {
+    @Test(expected = FileNotFoundException.class)
+    public void testRandomWordFileDoesNotExist() throws FileNotFoundException {
         String returnedWord = WordPicker.getRandomWord("herro.txt");
-        assertEquals("", returnedWord);
     }
 }

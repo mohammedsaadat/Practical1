@@ -1,5 +1,6 @@
 package cs5031;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Hangman {
@@ -25,8 +26,12 @@ public class Hangman {
             }
 
         } else {
-            game = new GameState(WordPicker.getRandomWord(opts.getWordsource()),
-                    opts.getMaxguesses(), opts.getMaxhints());
+            try {
+                game = new GameState(WordPicker.getRandomWord(opts.getWordsource()),
+                        opts.getMaxguesses(), opts.getMaxhints());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
         while (!game.won() && !game.lost()) {
             game.showWord();

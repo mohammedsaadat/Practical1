@@ -70,7 +70,7 @@ public class WordPicker {
      * @param wordSource String the represents the path to the file.
      * @return random string obtained from the file.
      */
-    public static String getRandomWord(String wordSource) throws IllegalArgumentException {
+    public static String getRandomWord(String wordSource) throws IllegalArgumentException, FileNotFoundException {
         String line;
         customWords = new ArrayList<>();
         try {
@@ -83,8 +83,8 @@ public class WordPicker {
             reader.close();
             return customWords.get(random.nextInt(customWords.size()));
         } catch (FileNotFoundException e) {
-            System.out.println("File error");
-            return "";
+            throw new FileNotFoundException();
+
         } catch (IOException e) {
             System.out.println("IO error");
             return "";
