@@ -56,11 +56,11 @@ public class WordPicker {
      */
     public static String getRandomWord(int category) {
         if (category == COUNTIES)
-            return COUNTIES_WORDS[(random.nextInt(9))];
+            return COUNTIES_WORDS[(random.nextInt(COUNTIES_WORDS.length))];
         else if (category == COUNTRIES)
-            return COUNTRIES_WORDS[random.nextInt(15)];
+            return COUNTRIES_WORDS[random.nextInt(COUNTRIES_WORDS.length)];
         else if (category == CITIES)
-            return CITIES_WORDS[random.nextInt(10)];
+            return CITIES_WORDS[random.nextInt(CITIES_WORDS.length)];
         else
             return "Wrong Input";
     }
