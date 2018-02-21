@@ -8,6 +8,28 @@ import java.util.Scanner;
  */
 public class GameState {
     /**
+     * Integer shows that the user is asking for a hint.
+     */
+    static final int HINT = 1;
+
+    /**
+     * Integer shows that the user is taking a guess with
+     * a letter.
+     */
+    static final int LETTER = 2;
+
+    /**
+     * Integer shows that the user is taking a guess with
+     * a whole word.
+     */
+    static final int WORD = 3;
+
+    /**
+     * Integer shows that the user entered a wrong input.
+     */
+    static final int WRONG_INPUT = 4;
+
+    /**
      * String that represents the target word that the player
      * has to guess.
      */
@@ -156,6 +178,32 @@ public class GameState {
     void showWord() {
         String showWord = createShowWordString(word, guessedLetters);
         System.out.println(showWord);
+    }
+
+    /**
+     * Returns an integer that represents one of the pre-defined
+     * input types (LETTER, WORD, HINT and WRONG_INPUT).
+     * @param input A string that represents the user input.
+     * @return An integer that refers to the type of input.
+     */
+    public int parseInput(String input) {
+        // In case of empty string or null input.
+        if (input == null || input.length() == 0) {
+            return WRONG_INPUT;
+        } else if (input.length() > 1) {
+            return WORD;
+        }
+
+        // Getting the character.
+        Character letter = input.charAt(0);
+
+        if (letter == '?') {
+            return HINT;
+        } else if (letter >= 'A' && letter <= 'Z' || letter >= 'a' && letter <= 'z') {
+            return LETTER;
+        } else {
+            return WRONG_INPUT;
+        }
     }
 
     boolean guessLetter() {

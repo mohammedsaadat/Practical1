@@ -129,4 +129,56 @@ public class GameStateTest {
         String result = gameState.createShowWordString(word, guessed);
         assertEquals(word, result);
     }
+
+    @Test
+    public void testParseInputWord() {
+        GameState gameState = new GameState("Hello", 20, 20);
+        // Trying out different lengths.
+        int result = gameState.parseInput("Hey");
+        int result2 = gameState.parseInput("hi");
+
+        assertEquals(result, GameState.WORD);
+        assertEquals(result2, GameState.WORD);
+    }
+
+    @Test
+    public void testParseInputLetter() {
+        GameState gameState = new GameState("Hello", 20, 20);
+        // Trying out different cases.
+        int result = gameState.parseInput("H");
+        int result2 = gameState.parseInput("h");
+
+        assertEquals(result, GameState.LETTER);
+        assertEquals(result2, GameState.LETTER);
+    }
+
+    @Test
+    public void testParseInputHint() {
+        GameState gameState = new GameState("Hello", 20, 20);
+        int result = gameState.parseInput("?");
+
+        assertEquals(result, GameState.HINT);
+    }
+
+    @Test
+    public void testParseInputWrongInput() {
+        GameState gameState = new GameState("Hello", 20, 20);
+        // Testing out different wrong inputs.
+        int result = gameState.parseInput("-");
+        int result2 = gameState.parseInput("9");
+        int result3 = gameState.parseInput("");
+
+        assertEquals(result, GameState.WRONG_INPUT);
+        assertEquals(result2, GameState.WRONG_INPUT);
+        assertEquals(result3, GameState.WRONG_INPUT);
+    }
+
+    @Test
+    public void testParseInputWithNullInput() {
+        GameState gameState = new GameState("Hello", 20, 20);
+        // Testing out different wrong inputs.
+        int result = gameState.parseInput(null);
+
+        assertEquals(result, GameState.WRONG_INPUT);
+    }
 }
