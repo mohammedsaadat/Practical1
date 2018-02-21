@@ -9,7 +9,6 @@ public class Hangman {
         Scanner sc = new Scanner(System.in);
         GameState game = null;
         CommandOpts opts;
-        boolean correct;
         opts = new CommandOpts();
         opts.parseArgument(args);
         if (opts.getWordsource() == "") {
@@ -38,11 +37,7 @@ public class Hangman {
         while (!game.won() && !game.lost()) {
             game.showWord();
             System.out.println("Guesses remaining: " + game.getRemainingGuesses());
-            correct = game.guessLetter();
-            if (correct)
-                System.out.println("Good guess!");
-            if (!correct)
-                System.out.println("Wrong guess!");
+            System.out.println(game.guess());
         }
         if (game.won()) {
             System.out.println("Well done!");

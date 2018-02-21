@@ -6,7 +6,7 @@ import java.util.Scanner;
 /**
  * This class handles all of the Hangman game logic.
  */
-public class GameState {
+class GameState {
     /**
      * Integer shows that the user is asking for a hint.
      */
@@ -58,6 +58,12 @@ public class GameState {
      */
     static final String HINT_MSG = "Try: ";
 
+    /**
+     * String shows the messages displayed to the user on wrong
+     * type input.
+     */
+    static final String WRONG_INPUT_MSG = "Wrong input, try again";
+
 
     /**
      * String that represents the target word that the player
@@ -107,7 +113,7 @@ public class GameState {
      * @param maxGuesses Integer that represents the maximum number of guesses.
      * @param maxHints Integer that represents the maximum number of hints.
      */
-    public GameState(String target, int maxGuesses, int maxHints) {
+    GameState(String target, int maxGuesses, int maxHints) {
         this.word = target;
         this.guesses = 0;
         this.remainingHints = maxHints;
@@ -122,8 +128,8 @@ public class GameState {
      * @param targetWord String that is the target word.
      * @param wordCharacters ArrayList of string.
      */
-    public void initialiseUnGuessedArray(String targetWord,
-                                         ArrayList<Character> wordCharacters) {
+    void initialiseUnGuessedArray(String targetWord,
+                                  ArrayList<Character> wordCharacters) {
         for (int i = 0; i < targetWord.length(); ++i) {
             Character character = Character.toLowerCase(targetWord.charAt(i));
             /*
@@ -140,7 +146,7 @@ public class GameState {
      * Getter that returns the unGuessedLetters ArrayList.
      * @return The unGuessedLetters ArrayList.
      */
-    public ArrayList<Character> getUnGuessedLetters() {
+    ArrayList<Character> getUnGuessedLetters() {
         return unGuessedLetters;
     }
 
@@ -148,7 +154,7 @@ public class GameState {
      * Getter that returns the target word.
      * @return String that represents the target word.
      */
-    public String getWord() {
+    String getWord() {
         return word;
     }
 
@@ -156,7 +162,7 @@ public class GameState {
      * Getter that returns the number of guesses taken so far.
      * @return Integer that represents the number of guesses taken so far.
      */
-    public int getGuesses() {
+    int getGuesses() {
         return guesses;
     }
 
@@ -164,7 +170,7 @@ public class GameState {
      * Getter that returns the number of remaining guesses.
      * @return Integer that represents the number of remaining guesses.
      */
-    public int getRemainingGuesses() {
+    int getRemainingGuesses() {
         return remainingGuesses;
     }
 
@@ -172,7 +178,7 @@ public class GameState {
      * Getter that returns the number of remaining hints.
      * @return Integer that represents the number of remaining hints.
      */
-    public int getRemainingHints() {
+    int getRemainingHints() {
         return remainingHints;
     }
 
@@ -183,8 +189,8 @@ public class GameState {
      * @param guessed ArrayList containing the letters guessed by the player.
      * @return String that shows the current word with letters guessed only.
      */
-    public String createShowWordString(String targetWord,
-                                       ArrayList<Character> guessed) {
+    String createShowWordString(String targetWord,
+                                ArrayList<Character> guessed) {
         // create string builder.
         StringBuilder returnString = new StringBuilder();
 
@@ -216,7 +222,7 @@ public class GameState {
      * @param input A string that represents the user input.
      * @return An integer that refers to the type of input.
      */
-    public int parseInput(String input) {
+    int parseInput(String input) {
         // In case of empty string or null input.
         if (input == null || input.length() == 0) {
             return WRONG_INPUT;
@@ -229,7 +235,8 @@ public class GameState {
 
         if (letter == '?') {
             return HINT;
-        } else if (letter >= 'A' && letter <= 'Z' || letter >= 'a' && letter <= 'z') {
+        } else if (letter >= 'A' && letter <= 'Z'
+                || letter >= 'a' && letter <= 'z') {
             return LETTER;
         } else {
             return WRONG_INPUT;
@@ -245,7 +252,7 @@ public class GameState {
      * @param targetWord A string represents what the user should guess.
      * @return A string that represents a message for the player.
      */
-    public String handleWordInput(String userInput, String targetWord) {
+    String handleWordInput(String userInput, String targetWord) {
         // Increase number of guesses taken.
         guesses++;
 
@@ -267,12 +274,12 @@ public class GameState {
      * player will receive a message containing the hint.
      * @return A string that represents the message displayed for player.
      */
-    public String handleHintInput() {
+    String handleHintInput() {
         Character hint = generateHint();
         if (hint == NO_HINTS) {
             return NO_MORE_HINT_MSG;
         } else {
-            return HINT_MSG + generateHint();
+            return HINT_MSG + hint;
         }
     }
 
@@ -282,13 +289,14 @@ public class GameState {
      * variable as well.
      * @return A character that represents the suggested hint.
      */
-    public Character generateHint() {
+    Character generateHint() {
         if (remainingHints == 0) {
             return NO_HINTS;
         }
         // subtract the remaining hints.
         remainingHints--;
-        return unGuessedLetters.get((int) (Math.random() * unGuessedLetters.size()));
+        return unGuessedLetters.get((int) (Math.random()
+                * unGuessedLetters.size()));
     }
 
     /**
@@ -299,7 +307,7 @@ public class GameState {
      * @param character A character that represents the player input.
      * @return A string that represents the message displayed to the player.
      */
-    public String handleLetterInput(Character character) {
+    String handleLetterInput(Character character) {
         // Increase number of guesses taken.
         guesses++;
 
@@ -322,39 +330,52 @@ public class GameState {
         return INCORRECT_GUESS;
     }
 
-    boolean guessLetter() {
-        char letter;
+    /**
+     * Creates the message that is returned to the player as per
+     * the input the player entered (WORD, LETTER, HINT or WRONG_INPUT).
+     * @param userInput String represents user input.
+     * @return A string that contains the message to be displayed to the user.
+     */
+    String handleGuess(String userInput) {
+        // Get the type of the input.
+        int inputType = parseInput(userInput);
+        String message = "";
+        // Generate message base on the input.
+        switch (inputType) {
+            case WORD:
+                message = handleWordInput(userInput, word);
+                break;
 
+            case LETTER:
+                message = handleLetterInput(userInput.charAt(0));
+                break;
+
+            case HINT:
+                message = handleHintInput();
+                break;
+
+            case WRONG_INPUT:
+                message = WRONG_INPUT_MSG;
+                break;
+
+            default:
+                message = "Ops, something went wrong!";
+        }
+
+        return message;
+    }
+
+    /**
+     * Asks the user for an input which is then passed to the handleGuess
+     * to be handled. After that a message is returned for the player.
+     * @return A string contains a message to be displayed to the player.
+     */
+    String guess() {
+        // Get the user input.
         System.out.print("Guess a letter or word (? for a hint): ");
-
+        // read from the scanner.
         String str = sc.next().toLowerCase();
-
-        if (str.length() > 1) {
-            if (str == word) {
-                unGuessedLetters.clear();
-                return true;
-            } else return false;
-        }
-
-        letter = str.charAt(0);
-
-        if (letter == '?') {
-            hint();
-            return false;
-        }
-
-        for (int i = 0; i < unGuessedLetters.size(); ++i) { // Loop over the not got
-            if (unGuessedLetters.get(i) == letter) {
-                unGuessedLetters.remove(i);
-                guessedLetters.add(letter);
-                guesses++;
-                return true;
-            }
-        }
-
-        guesses++; // One more guess
-        remainingGuesses--;
-        return false;
+        return handleGuess(str);
     }
 
     boolean won() {

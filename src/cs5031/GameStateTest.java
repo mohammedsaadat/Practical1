@@ -248,6 +248,17 @@ public class GameStateTest {
     }
 
     @Test
+    public void testHandleHintInputNoHint2() {
+        GameState gameState = new GameState("hi", 10, 1);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+        String message = gameState.handleHintInput();
+        String msg2 = gameState.handleHintInput();
+
+        assertEquals(0, gameState.getRemainingHints());
+        assertEquals(GameState.NO_MORE_HINT_MSG, msg2);
+    }
+
+    @Test
     public void testHandleLetterInputCorrectGuess() {
         GameState gameState = new GameState("hi", 10, 10);
         gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
@@ -281,5 +292,118 @@ public class GameStateTest {
         String result = gameState.handleLetterInput('h');
 
         assertEquals(GameState.CORRECT_GUESS, result);
+    }
+
+    @Test
+    public void testHandleGuessLetterCorrect() {
+        GameState gameState = new GameState("HI", 10, 10);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+
+        String result = gameState.handleGuess("h");
+        assertEquals(1, gameState.getGuesses());
+        assertEquals(10, gameState.getRemainingGuesses());
+        assertEquals(GameState.CORRECT_GUESS, result);
+    }
+
+    @Test
+    public void testHandleGuessLetterIncorrect() {
+        GameState gameState = new GameState("HI", 10, 10);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+
+        String result = gameState.handleGuess("k");
+        assertEquals(1, gameState.getGuesses());
+        assertEquals(9, gameState.getRemainingGuesses());
+        assertEquals(GameState.INCORRECT_GUESS, result);
+    }
+
+    @Test
+    public void testHandleGuessWordCorrect() {
+        GameState gameState = new GameState("HI", 10, 10);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+
+        String result = gameState.handleGuess("hi");
+        assertEquals(1, gameState.getGuesses());
+        assertEquals(10, gameState.getRemainingGuesses());
+        assertEquals(0, gameState.getUnGuessedLetters().size());
+
+        assertEquals(GameState.CORRECT_GUESS, result);
+    }
+
+    @Test
+    public void testHandleGuessWordIncorrect() {
+        GameState gameState = new GameState("HI", 10, 10);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+
+        String result = gameState.handleGuess("hj");
+        int currentSize = gameState.getUnGuessedLetters().size();
+
+        assertEquals(1, gameState.getGuesses());
+        assertEquals(9, gameState.getRemainingGuesses());
+        assertEquals(currentSize, gameState.getUnGuessedLetters().size());
+
+        assertEquals(GameState.INCORRECT_GUESS, result);
+    }
+
+    @Test
+    public void testHandleGuessAskHint() {
+        GameState gameState = new GameState("H", 10, 10);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+
+        String result = gameState.handleGuess("?");
+
+        assertEquals(0, gameState.getGuesses());
+        assertEquals(9, gameState.getRemainingHints());
+
+        assertEquals(GameState.HINT_MSG+"h", result);
+    }
+
+    @Test
+    public void testHandleGuessAskHintNoMore() {
+        GameState gameState = new GameState("H", 10, 1);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+
+        String result = gameState.handleGuess("?");
+        result = gameState.handleGuess("?");
+
+        assertEquals(0, gameState.getGuesses());
+        assertEquals(0, gameState.getRemainingHints());
+
+        assertEquals(GameState.NO_MORE_HINT_MSG, result);
+    }
+
+    @Test
+    public void testHandleGuessWrongInputType() {
+        GameState gameState = new GameState("Hey", 10, 1);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+        String result = gameState.handleGuess("-");
+
+        assertEquals(10, gameState.getRemainingGuesses());
+        assertEquals(0, gameState.getGuesses());
+
+        assertEquals(GameState.WRONG_INPUT_MSG, result);
+    }
+
+    @Test
+    public void testHandleGuessWrongInputTypeEmpty() {
+        GameState gameState = new GameState("Hey", 10, 1);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+        String result = gameState.handleGuess("");
+
+        assertEquals(10, gameState.getRemainingGuesses());
+        assertEquals(0, gameState.getGuesses());
+
+        assertEquals(GameState.WRONG_INPUT_MSG, result);
+    }
+
+    @Test
+    public void testHandleGuessWrongInputTypeNull() {
+        GameState gameState = new GameState("Hey", 10, 1);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+        String result = gameState.handleGuess(null);
+
+        assertEquals(10, gameState.getRemainingGuesses());
+        assertEquals(0, gameState.getGuesses());
+
+        assertEquals(GameState.WRONG_INPUT_MSG, result);
     }
 }
