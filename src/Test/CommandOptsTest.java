@@ -1,3 +1,4 @@
+package Test;
 
 import hangman.CommandOpts;
 import org.junit.Test;

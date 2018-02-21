@@ -1,3 +1,5 @@
+package Test;
+
 import hangman.WordPicker;
 import hangman.WrongCategoryException;
 import org.junit.Test;

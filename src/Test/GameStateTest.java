@@ -1,3 +1,5 @@
+package Test;
+
 import static org.junit.Assert.*;
 
 import hangman.GameState;
