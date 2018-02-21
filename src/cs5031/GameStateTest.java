@@ -246,4 +246,40 @@ public class GameStateTest {
 
         assertEquals(GameState.NO_MORE_HINT_MSG, message);
     }
+
+    @Test
+    public void testHandleLetterInputCorrectGuess() {
+        GameState gameState = new GameState("hi", 10, 10);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+        String result = gameState.handleLetterInput('h');
+
+        assertEquals(GameState.CORRECT_GUESS, result);
+    }
+
+    @Test
+    public void testHandleLetterInputIncorrectGuess() {
+        GameState gameState = new GameState("hi", 10, 10);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+        String result = gameState.handleLetterInput('j');
+
+        assertEquals(GameState.INCORRECT_GUESS, result);
+    }
+
+    @Test
+    public void testHandleLetterInputCorrectGuessWithUpperCase() {
+        GameState gameState = new GameState("hi", 10, 10);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+        String result = gameState.handleLetterInput('H');
+
+        assertEquals(GameState.CORRECT_GUESS, result);
+    }
+
+    @Test
+    public void testHandleLetterInputCorrectGuessWithUpperCaseTarget() {
+        GameState gameState = new GameState("HI", 10, 10);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+        String result = gameState.handleLetterInput('h');
+
+        assertEquals(GameState.CORRECT_GUESS, result);
+    }
 }

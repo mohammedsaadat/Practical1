@@ -291,6 +291,37 @@ public class GameState {
         return unGuessedLetters.get((int) (Math.random() * unGuessedLetters.size()));
     }
 
+    /**
+     * Creates a message that displays whether the guess the
+     * player took was correct or incorrect. In addition, all
+     * other variables such as the number of guesses and the
+     * remaining guesses are updated accordingly.
+     * @param character A character that represents the player input.
+     * @return A string that represents the message displayed to the player.
+     */
+    public String handleLetterInput(Character character) {
+        // Increase number of guesses taken.
+        guesses++;
+
+        for (Character letter : unGuessedLetters) {
+            /*
+             Changed to lower case so that in case the player enters an upper
+             case letter.
+            */
+            if (letter == Character.toLowerCase(character)) {
+                // remove the guessed letter from un-guessed list.
+                unGuessedLetters.remove(letter);
+                // add the removed letter to the guessed list
+                guessedLetters.add(letter);
+                return CORRECT_GUESS;
+            }
+        }
+
+        // otherwise the guess was wrong, thus subtract remaining guesses.
+        remainingGuesses--;
+        return INCORRECT_GUESS;
+    }
+
     boolean guessLetter() {
         char letter;
 
