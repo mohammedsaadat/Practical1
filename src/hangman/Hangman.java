@@ -8,52 +8,91 @@ import java.util.Scanner;
 public class Hangman {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in, "UTF-8");
-        GameState game = null;
-        CommandOpts opts = new CommandOpts();
-        // Parsing the arguments.
-        opts.parseArgument(args);
-        if (opts.getWordsource().equalsIgnoreCase("")) {
-            System.out.println("  1. Counties");
-            System.out.println("  2. Countries");
-            System.out.println("  3. Cities");
 
-            System.out.print("Pick a category:");
-            try {
-                game = new GameState(WordPicker.getRandomWord(sc.nextInt()),
-                        opts.getMaxguesses(), opts.getMaxhints());
-                game.initialiseUnGuessedArray(game.getWord(),
-                        game.getUnGuessedLetters());
-            } catch (WrongCategoryException e) {
-                System.out.println("Wrong Category Choice");
+        try {
+            Scanner sc = new Scanner(System.in, "UTF-8");
+            CommandOpts opts = new CommandOpts();
+            // Parsing the arguments.
+            opts.parseArgument(args);
+            // Obtaining the arguments
+            int maxGuesses = opts.getMaxguesses();
+            int maxHints = opts.getMaxhints();
+            String targetWord;
+            if (opts.getWordsource().equalsIgnoreCase("")) {
+                // User selection menu
+                printMenu();
+                targetWord = WordPicker.getRandomWord(sc.nextInt());
+            } else {
+                targetWord = WordPicker.getRandomWord(opts.getWordsource());
             }
 
-        } else {
-            try {
-                game = new GameState(WordPicker.getRandomWord(opts.getWordsource()),
-                        opts.getMaxguesses(), opts.getMaxhints());
-                game.initialiseUnGuessedArray(game.getWord(),
-                        game.getUnGuessedLetters());
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+            GameState game = new GameState(targetWord, maxGuesses, maxHints);
+            // initialise the unGuessed array.
+            game.initialiseUnGuessedArray(game.getWord(),
+                    game.getUnGuessedLetters());
+
+            // while the game not ended yet.
+            while (!game.won() && !game.lost()) {
+                game.showWord();
+                printGameRound(game.getRemainingGuesses(), game.guess());
             }
-        }
+            if (game.won()) {
+                printGameWon(game.getGuesses(), game.getWord());
+            } else {
+                printGameLost(game.getWord());
+            }
 
-        if (game == null) {
-            return;
+            // close scanner.
+            sc.close();
+        } catch (NumberFormatException e) {
+            System.out.println("The arguments passed are incorrect!");
+        } catch (WrongCategoryException e) {
+            System.out.println("Wrong Category Choice");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+    }
 
-        while (!game.won() && !game.lost()) {
-            game.showWord();
-            System.out.println("Guesses remaining: "
-                    + game.getRemainingGuesses());
-            System.out.println(game.guess());
-        }
-        if (game.won()) {
-            System.out.println("Well done!");
-            System.out.println("You took " + game.getGuesses() + " guesses");
-        } else {
-            System.out.println("You lost! The word was " + game.getWord());
-        }
+    /**
+     * Prints out a menu for the player to select from.
+     */
+    private static void printMenu() {
+        System.out.println("  1. Counties");
+        System.out.println("  2. Countries");
+        System.out.println("  3. Cities");
+        System.out.print("Pick a category:");
+    }
+
+    /**
+     * Prints out a message states that the game is won
+     * when the player wins.
+     * @param guesses The number of guesses that the player took.
+     * @param word The target word that the player was guessing.
+     */
+    private static void printGameWon(final int guesses, final String word) {
+        System.out.println("Well done!");
+        System.out.println("You took " + guesses
+                + " guesses. The word was " + word);
+    }
+
+    /**
+     * Prints out that the game is lost when the player
+     * losses.
+     * @param word The word that the player was meant to guess.
+     */
+    private static void printGameLost(final String word) {
+        System.out.println("You lost! The word was " + word);
+    }
+
+    /**
+     * Prints out each game play round.
+     * @param remainingGuesses The remaining number of guesses that the
+     *                         player has.
+     * @param message The message that the player gets after taking a guess.
+     */
+    private static void printGameRound(final int remainingGuesses,
+                                       final String message) {
+        System.out.println("Guesses remaining: " + remainingGuesses);
+        System.out.println(message);
     }
 }
