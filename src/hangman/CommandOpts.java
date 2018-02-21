@@ -42,13 +42,14 @@ public class CommandOpts {
     /**
      * Handles parsing the arguments passed to their corresponding variables
      * and assign them to it.
-     * @param args String array that is passed from the main method and it contains flags and values
-     *             for the number of maximum hints and guesses as well as the path to the file with
-     *             the words.
-     * @throws NumberFormatException This exception is thrown when the input for the maximum hints/guesses
-     *                               number is not an integer.
+     * @param args String array that is passed from the main method and it
+     *             contains flags and values for the number of maximum hints
+     *             and guesses as well as the path to the file with the words.
+     * @throws NumberFormatException This exception is thrown when the input
+     * for the maximum hints/guesses number is not an integer.
      */
-    public void parseArgument(String[] args) throws NumberFormatException{
+    public void parseArgument(final String[] args)
+            throws NumberFormatException {
         // in  case the argument passed is null.
         if (args == null) {
             return;
@@ -67,9 +68,12 @@ public class CommandOpts {
                     break;
 
                 case "--source":
-                    wordSource = args[i+1];
+                    wordSource = args[i + 1];
                     i++;
                     break;
+
+                default:
+                    System.out.println("Wrong Argument.");
             }
         }
     }
