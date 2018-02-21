@@ -406,4 +406,41 @@ public class GameStateTest {
 
         assertEquals(GameState.WRONG_INPUT_MSG, result);
     }
+
+    @Test
+    public void testWonGame() {
+        GameState gameState = new GameState("Hi", 10, 10);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+        gameState.handleGuess("Hi");
+
+        assertTrue(gameState.won());
+    }
+
+    @Test
+    public void testWonGameNot() {
+        GameState gameState = new GameState("Hi", 10, 10);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+        gameState.handleGuess("H");
+
+        assertFalse(gameState.won());
+    }
+
+    @Test
+    public void testLostGameNot() {
+        GameState gameState = new GameState("Hi", 10, 10);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+        gameState.handleGuess("Hi");
+
+        assertFalse(gameState.lost());
+    }
+
+    @Test
+    public void testLostGame() {
+        GameState gameState = new GameState("Hi", 2, 10);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+        gameState.handleGuess("k");
+        gameState.handleGuess("l");
+
+        assertTrue(gameState.lost());
+    }
 }

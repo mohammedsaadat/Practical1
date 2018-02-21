@@ -378,23 +378,23 @@ class GameState {
         return handleGuess(str);
     }
 
+    /**
+     * Checks if the player won the game and returns true
+     * if the player won.
+     * @return Boolean that shows that the player won or not.
+     */
     boolean won() {
+        // Checks if the player guessed all the letters.
         return unGuessedLetters.size() == 0;
     }
 
+    /**
+     * Checks if the player list the game and returns
+     * a boolean accordingly.
+     * @return Boolean that shows that the player lost or not.
+     */
     boolean lost() {
         return (unGuessedLetters.size() > 0 && remainingGuesses == 0);
     }
-
-    void hint() {
-        if (remainingHints == 0) {
-            System.out.println("No more hints allowed");
-        }
-
-        System.out.print("Try: ");
-        System.out.println(unGuessedLetters.get((int) (Math.random() * unGuessedLetters.size())));
-    }
-
-
 }
 
