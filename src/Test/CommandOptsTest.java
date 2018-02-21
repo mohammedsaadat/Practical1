@@ -1,7 +1,8 @@
-package cs5031;
+package Test;
 
 import static org.junit.Assert.*;
 
+import HangmanGame.CommandOpts;
 import org.junit.Test;
 
 public class CommandOptsTest {

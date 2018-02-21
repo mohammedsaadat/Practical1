@@ -1,5 +1,7 @@
-package cs5031;
+package Test;
 
+import HangmanGame.WordPicker;
+import HangmanGame.WrongCategoryException;
 import org.junit.Test;
 
 import java.io.*;

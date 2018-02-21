@@ -1,4 +1,4 @@
-package cs5031;
+package HangmanGame;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;

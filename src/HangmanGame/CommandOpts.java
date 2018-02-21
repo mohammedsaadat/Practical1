@@ -1,4 +1,4 @@
-package cs5031;
+package HangmanGame;
 
 /**
  * Handles retrieving information passed to the program from the arguments.
@@ -22,18 +22,18 @@ public class CommandOpts {
     /**
      * Default maximum number of guesses.
      */
-    static final int MAX_GUESSES = 10;
+    public static final int MAX_GUESSES = 10;
 
     /**
      * Default maximum number of hints.
      */
-    static final int MAX_HINTS = 2;
+    public static final int MAX_HINTS = 2;
 
     /**
      * Constructor for CommandOpts class which assigns maxGuesses, maxHints
      * and wordSource to their default values.
      */
-    CommandOpts() {
+    public CommandOpts() {
         maxGuesses = MAX_GUESSES;
         maxHints = MAX_HINTS;
         wordSource = "";

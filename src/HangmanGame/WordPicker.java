@@ -1,4 +1,4 @@
-package cs5031;
+package HangmanGame;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -14,36 +14,36 @@ public class WordPicker {
     /**
      * Constant that refers to the counties category.
      */
-    static final int COUNTIES = 1;
+    public static final int COUNTIES = 1;
 
     /**
      * Constant that refers to the countries category.
      */
-    static final int COUNTRIES = 2;
+    public static final int COUNTRIES = 2;
 
     /**
      * Constant that refers to the cities category.
      */
-    static final int CITIES = 3;
+    public static final int CITIES = 3;
 
     /**
      * Constant string array that contains counties words.
      */
-    static final String[] COUNTIES_WORDS = {"Argyll and Bute", "Caithness", "Kingdom of Fife",
+    public static final String[] COUNTIES_WORDS = {"Argyll and Bute", "Caithness", "Kingdom of Fife",
             "East Lothian", "Highland", "Dumfries and Galloway",
             "Renfrewshire", "Scottish Borders", "Perth and Kinross"};
 
     /**
      * Constant string array that contains countries words.
      */
-    static final String[] COUNTRIES_WORDS = {"Scotland", "England", "Wales", "Northern Ireland", "Ireland",
+    public static final String[] COUNTRIES_WORDS = {"Scotland", "England", "Wales", "Northern Ireland", "Ireland",
             "France", "Germany", "Netherlands", "Spain", "Portugal",
             "Belgium", "Luxembourg", "Switzerland", "Italy", "Greece"};
 
     /**
      * Constant string array that contains cities words.
      */
-    static final String[] CITIES_WORDS = {"St Andrews", "Edinburgh", "Glasgow", "Kirkcaldy", "Perth",
+    public static final String[] CITIES_WORDS = {"St Andrews", "Edinburgh", "Glasgow", "Kirkcaldy", "Perth",
             "Dundee", "Stirling", "Inverness", "Aberdeen", "Falkirk"};
 
     private static ArrayList<String> customWords;

@@ -1,4 +1,4 @@
-package cs5031;
+package HangmanGame;
 
 /**
  * Exception class thrown whenever the input for the category is wrong.

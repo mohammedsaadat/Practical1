@@ -1,7 +1,8 @@
-package cs5031;
+package Test;
 
 import static org.junit.Assert.*;
 
+import HangmanGame.GameState;
 import org.junit.Test;
 
 import java.util.ArrayList;
