@@ -41,6 +41,23 @@ public class GameState {
      */
     static final String INCORRECT_GUESS = "Incorrect Guess";
 
+    /**
+     * Character representing that no more hints are left.
+     */
+    static final Character NO_HINTS = '.';
+
+    /**
+     * String holds the message printed to the player when
+     * no more hints are allowed.
+     */
+    static final String NO_MORE_HINT_MSG = "No more hints allowed";
+
+    /**
+     * String shows the message displayed when user asks
+     * for a hint.
+     */
+    static final String HINT_MSG = "Try: ";
+
 
     /**
      * String that represents the target word that the player
@@ -241,6 +258,37 @@ public class GameState {
             remainingGuesses--;
             return INCORRECT_GUESS;
         }
+    }
+
+    /**
+     * Creates a message that is displayed to the player when
+     * requesting for hints. In case no hints are remaining a
+     * message stating that will be displayed. Otherwise, the
+     * player will receive a message containing the hint.
+     * @return A string that represents the message displayed for player.
+     */
+    public String handleHintInput() {
+        Character hint = generateHint();
+        if (hint == NO_HINTS) {
+            return NO_MORE_HINT_MSG;
+        } else {
+            return HINT_MSG + generateHint();
+        }
+    }
+
+    /**
+     * Generates a hint by randomly selecting a character from the
+     * unGuessedLetters ArrayList. It updates the remaining hints
+     * variable as well.
+     * @return A character that represents the suggested hint.
+     */
+    public Character generateHint() {
+        if (remainingHints == 0) {
+            return NO_HINTS;
+        }
+        // subtract the remaining hints.
+        remainingHints--;
+        return unGuessedLetters.get((int) (Math.random() * unGuessedLetters.size()));
     }
 
     boolean guessLetter() {

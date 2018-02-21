@@ -9,7 +9,7 @@ import static org.hamcrest.CoreMatchers.hasItem;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-public class WordTest {
+public class WordPickerTest {
 
     @Test
     public void testRandomWordReturnCounties() throws WrongCategoryException {

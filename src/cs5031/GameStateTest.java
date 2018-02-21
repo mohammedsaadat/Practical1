@@ -208,4 +208,42 @@ public class GameStateTest {
         assertEquals(9, remainingGuesses);
 
     }
+
+    @Test
+    public void testGenerateHint() {
+        GameState gameState = new GameState("hi", 10, 10);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+        Character hint = gameState.generateHint();
+
+        ArrayList<Character> unGuessedList = gameState.getUnGuessedLetters();
+
+        assertTrue(unGuessedList.contains(hint));
+        assertEquals(9, gameState.getRemainingHints());
+    }
+
+    @Test
+    public void testGenerateHintNoMoreHints() {
+        GameState gameState = new GameState("hi", 10, 1);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+        Character hint = gameState.generateHint();
+        Character hint2 = gameState.generateHint();
+
+        ArrayList<Character> unGuessedList = gameState.getUnGuessedLetters();
+
+        //For the first hint.
+        assertTrue(unGuessedList.contains(hint));
+
+        assertEquals(0, gameState.getRemainingHints());
+        assertEquals(GameState.NO_HINTS, hint2);
+    }
+
+    @Test
+    public void testHandleHintInputNoHint() {
+        GameState gameState = new GameState("hi", 10, 0);
+        gameState.initialiseUnGuessedArray(gameState.getWord(), gameState.getUnGuessedLetters());
+        String message = gameState.handleHintInput();
+
+
+        assertEquals(GameState.NO_MORE_HINT_MSG, message);
+    }
 }
