@@ -30,6 +30,19 @@ public class GameState {
     static final int WRONG_INPUT = 4;
 
     /**
+     * String holds the message printed to the player on
+     * correct input.
+     */
+    static final String CORRECT_GUESS = "Correct Guess";
+
+    /**
+     * String holds the message printed to the player on
+     * incorrect input.
+     */
+    static final String INCORRECT_GUESS = "Incorrect Guess";
+
+
+    /**
      * String that represents the target word that the player
      * has to guess.
      */
@@ -203,6 +216,30 @@ public class GameState {
             return LETTER;
         } else {
             return WRONG_INPUT;
+        }
+    }
+
+    /**
+     * Checks if the word that the user guessed is correct
+     * and returns a message to the player ('Correct Guess'
+     * in case the user got it right and 'Incorrect Guess'
+     * in case the user got it wrong).
+     * @param userInput A string represents the user input.
+     * @param targetWord A string represents what the user should guess.
+     * @return A string that represents a message for the player.
+     */
+    public String handleWordInput(String userInput, String targetWord) {
+        // Increase number of guesses taken.
+        guesses++;
+
+        if (userInput.equalsIgnoreCase(targetWord)) {
+            // clear the unGuessedLetters ArrayList.
+            unGuessedLetters.clear();
+            return CORRECT_GUESS;
+        } else {
+            // Subtract the number of remaining guesses.
+            remainingGuesses--;
+            return INCORRECT_GUESS;
         }
     }
 

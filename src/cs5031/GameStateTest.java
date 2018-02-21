@@ -181,4 +181,31 @@ public class GameStateTest {
 
         assertEquals(result, GameState.WRONG_INPUT);
     }
+
+    @Test
+    public void testHandleWordInputCorrectGuess() {
+        GameState gameState = new GameState("hi", 10, 10);
+
+        String message = gameState.handleWordInput("hi", gameState.getWord());
+        int numOfGuesses = gameState.getGuesses();
+
+        assertEquals(message, GameState.CORRECT_GUESS);
+        assertEquals(1, numOfGuesses);
+        assertEquals(10, gameState.getRemainingGuesses());
+        assertEquals(0, gameState.getUnGuessedLetters().size());
+    }
+
+    @Test
+    public void testHandleWordInputWrongGuess() {
+        GameState gameState = new GameState("hi", 10, 10);
+
+        String message = gameState.handleWordInput("hr", gameState.getWord());
+        int numOfGuesses = gameState.getGuesses();
+        int remainingGuesses = gameState.getRemainingGuesses();
+
+        assertEquals(message, GameState.INCORRECT_GUESS);
+        assertEquals(1, numOfGuesses);
+        assertEquals(9, remainingGuesses);
+
+    }
 }
