@@ -54,6 +54,9 @@ public class Hangman {
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found!");
             System.exit(1);
+        } catch (IllegalArgumentException e) {
+            System.out.println("File is empty!");
+            System.exit(1);
         }
     }
 
