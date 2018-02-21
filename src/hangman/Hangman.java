@@ -34,7 +34,8 @@ public class Hangman {
             // while the game not ended yet.
             while (!game.won() && !game.lost()) {
                 game.showWord();
-                printGameRound(game.getRemainingGuesses(), game.guess());
+                printGameRound(game.guess(),
+                        game.getRemainingGuesses(), game.getRemainingHints());
             }
             if (game.won()) {
                 printGameWon(game.getGuesses(), game.getWord());
@@ -91,11 +92,14 @@ public class Hangman {
      * Prints out each game play round.
      * @param remainingGuesses The remaining number of guesses that the
      *                         player has.
+     * @param remainingHints The remaining number of hints that the player
+     *                       has.
      * @param message The message that the player gets after taking a guess.
      */
-    private static void printGameRound(final int remainingGuesses,
-                                       final String message) {
+    private static void printGameRound(final String message,
+                                       final int remainingGuesses, final int remainingHints) {
         System.out.println("Guesses remaining: " + remainingGuesses);
+        System.out.println("Hints remaining: " + remainingHints);
         System.out.println(message);
     }
 }
