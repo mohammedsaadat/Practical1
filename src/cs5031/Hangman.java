@@ -8,10 +8,10 @@ public class Hangman {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         GameState game = null;
-        CommandOpts opts;
-        opts = new CommandOpts();
+        CommandOpts opts = new CommandOpts();
+        // Parsing the arguments.
         opts.parseArgument(args);
-        if (opts.getWordsource() == "") {
+        if (opts.getWordsource().equalsIgnoreCase("")) {
             System.out.println("  1. Counties");
             System.out.println("  2. Countries");
             System.out.println("  3. Cities");
