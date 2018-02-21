@@ -1,4 +1,4 @@
-package HangmanGame;
+package hangman;
 
 /**
  * Handles retrieving information passed to the program from the arguments.

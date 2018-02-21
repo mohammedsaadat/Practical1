@@ -1,5 +1,5 @@
-import HangmanGame.WordPicker;
-import HangmanGame.WrongCategoryException;
+import hangman.WordPicker;
+import hangman.WrongCategoryException;
 import org.junit.Test;
 
 import java.io.*;

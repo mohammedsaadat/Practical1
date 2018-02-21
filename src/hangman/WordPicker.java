@@ -1,4 +1,4 @@
-package HangmanGame;
+package hangman;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

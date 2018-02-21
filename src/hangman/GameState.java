@@ -1,4 +1,4 @@
-package HangmanGame;
+package hangman;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -104,7 +104,7 @@ public class GameState {
     /**
      * Scanner used to get user input when the game is ran.
      */
-    private Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    private Scanner sc = new Scanner(System.in, "UTF-8").useDelimiter("\n");
 
     /**
      * Constructor of GameState that initialises the target,
@@ -113,7 +113,8 @@ public class GameState {
      * @param maxGuesses Integer that represents the maximum number of guesses.
      * @param maxHints Integer that represents the maximum number of hints.
      */
-    public GameState(String target, int maxGuesses, int maxHints) {
+    public GameState(final String target, final int maxGuesses,
+                     final int maxHints) {
         this.word = target;
         this.guesses = 0;
         this.remainingHints = maxHints;
@@ -128,8 +129,8 @@ public class GameState {
      * @param targetWord String that is the target word.
      * @param wordCharacters ArrayList of string.
      */
-    public void initialiseUnGuessedArray(String targetWord,
-                                         ArrayList<Character> wordCharacters) {
+    public void initialiseUnGuessedArray(final String targetWord,
+                                         final ArrayList<Character> wordCharacters) {
         for (int i = 0; i < targetWord.length(); ++i) {
             Character character = Character.toLowerCase(targetWord.charAt(i));
             /*
@@ -189,8 +190,8 @@ public class GameState {
      * @param guessed ArrayList containing the letters guessed by the player.
      * @return String that shows the current word with letters guessed only.
      */
-    public String createShowWordString(String targetWord,
-                                       ArrayList<Character> guessed) {
+    public String createShowWordString(final String targetWord,
+                                       final ArrayList<Character> guessed) {
         // create string builder.
         StringBuilder returnString = new StringBuilder();
 
@@ -222,7 +223,7 @@ public class GameState {
      * @param input A string that represents the user input.
      * @return An integer that refers to the type of input.
      */
-    public int parseInput(String input) {
+    public int parseInput(final String input) {
         // In case of empty string or null input.
         if (input == null || input.length() == 0) {
             return WRONG_INPUT;
@@ -252,7 +253,8 @@ public class GameState {
      * @param targetWord A string represents what the user should guess.
      * @return A string that represents a message for the player.
      */
-    public String handleWordInput(String userInput, String targetWord) {
+    public String handleWordInput(final String userInput,
+                                  final String targetWord) {
         // Increase number of guesses taken.
         guesses++;
 
@@ -276,7 +278,7 @@ public class GameState {
      */
     public String handleHintInput() {
         Character hint = generateHint();
-        if (hint == NO_HINTS) {
+        if (hint.equals(NO_HINTS)) {
             return NO_MORE_HINT_MSG;
         } else {
             return HINT_MSG + hint;
@@ -307,7 +309,7 @@ public class GameState {
      * @param character A character that represents the player input.
      * @return A string that represents the message displayed to the player.
      */
-    public String handleLetterInput(Character character) {
+    public String handleLetterInput(final Character character) {
         // Increase number of guesses taken.
         guesses++;
 
@@ -336,7 +338,7 @@ public class GameState {
      * @param userInput String represents user input.
      * @return A string that contains the message to be displayed to the user.
      */
-    public String handleGuess(String userInput) {
+    public String handleGuess(final String userInput) {
         // Get the type of the input.
         int inputType = parseInput(userInput);
         String message = "";

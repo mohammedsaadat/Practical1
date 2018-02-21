@@ -1,12 +1,14 @@
-package HangmanGame;
-
+package hangman;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * This class has the main method.
+ */
 public class Hangman {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in, "UTF-8");
         GameState game = null;
         CommandOpts opts = new CommandOpts();
         // Parsing the arguments.
@@ -20,7 +22,8 @@ public class Hangman {
             try {
                 game = new GameState(WordPicker.getRandomWord(sc.nextInt()),
                         opts.getMaxguesses(), opts.getMaxhints());
-                game.initialiseUnGuessedArray(game.getWord(), game.getUnGuessedLetters());
+                game.initialiseUnGuessedArray(game.getWord(),
+                        game.getUnGuessedLetters());
             } catch (WrongCategoryException e) {
                 System.out.println("Wrong Category Choice");
             }
@@ -29,14 +32,21 @@ public class Hangman {
             try {
                 game = new GameState(WordPicker.getRandomWord(opts.getWordsource()),
                         opts.getMaxguesses(), opts.getMaxhints());
-                game.initialiseUnGuessedArray(game.getWord(), game.getUnGuessedLetters());
+                game.initialiseUnGuessedArray(game.getWord(),
+                        game.getUnGuessedLetters());
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
         }
+
+        if (game == null) {
+            return;
+        }
+
         while (!game.won() && !game.lost()) {
             game.showWord();
-            System.out.println("Guesses remaining: " + game.getRemainingGuesses());
+            System.out.println("Guesses remaining: "
+                    + game.getRemainingGuesses());
             System.out.println(game.guess());
         }
         if (game.won()) {

@@ -1,6 +1,6 @@
 import static org.junit.Assert.*;
 
-import HangmanGame.GameState;
+import hangman.GameState;
 import org.junit.Test;
 
 import java.util.ArrayList;
