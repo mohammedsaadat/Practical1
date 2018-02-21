@@ -1,15 +1,19 @@
-package Test;
+package test;
 
 import hangman.CommandOpts;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Class contains tests for the CommandOpts class.
+ */
 public class CommandOptsTest {
 
 	@Test
 	public void optionsTest() {
-		String[] args = {"--guesses", "2", "--hints", "4", "--source", "words.txt"};
+		String[] args = {"--guesses", "2", "--hints", "4",
+                "--source", "words.txt"};
 		CommandOpts opts = new CommandOpts();
 		opts.parseArgument(args);
 		assertEquals(opts.getMaxguesses(), 2);

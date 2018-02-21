@@ -1,4 +1,4 @@
-package Test;
+package test;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,9 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+/**
+ * This class tests the GameState class.
+ */
 public class GameStateTest {
 
     @Test

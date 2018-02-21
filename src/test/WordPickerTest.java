@@ -1,4 +1,4 @@
-package Test;
+package test;
 
 import hangman.WordPicker;
 import hangman.WrongCategoryException;
@@ -11,6 +11,9 @@ import static org.hamcrest.CoreMatchers.hasItem;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
+/**
+ * This class tests the WordPicker class.
+ */
 public class WordPickerTest {
 
     @Test
