@@ -46,10 +46,13 @@ public class Hangman {
             sc.close();
         } catch (NumberFormatException e) {
             System.out.println("The arguments passed are incorrect!");
+            System.exit(1);
         } catch (WrongCategoryException e) {
-            System.out.println("Wrong Category Choice");
+            System.out.println("Wrong Category Choice!");
+            System.exit(1);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("File Not Found!");
+            System.exit(1);
         }
     }
 
